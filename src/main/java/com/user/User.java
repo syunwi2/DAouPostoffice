@@ -85,19 +85,20 @@ public class User implements MailBox {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 	public void upDateBox(int textColor, int shape) {
+		this.setTextColorindex(textColor);
+		this.setShapeIndex(shape);
+		String sql = "update Mailbox m inner join User u"
+				+ "on m.user_no = u.User_user_no"
+				+ "set m.mailbox_color ="
+		+ this.getTextColorindex()
+		+", m.mailbox_shape = " 
+		+ this.getShapeIndex() +
+		"where u.user_id = " + this.id;
+		
+		
 		
 	}
 	
