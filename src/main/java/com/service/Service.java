@@ -26,6 +26,7 @@ public interface Service {
 	public int deleteMailVisual(int mail_mail_no) throws RecordNotFoundException;
 	
 	// select
+	public UserDTO isIDused(String user_id);
 	public UserDTO findUser(UserDTO dto);
 	public List<UserDTO> findUserAll(String user_name);
 	public MailBoxDTO findMailBox(int user_user_no);
