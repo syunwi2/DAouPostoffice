@@ -1,9 +1,14 @@
 package com.service;
 
+import com.user.User;
+import com.user.UserHandler;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		UserHandler user = new UserHandler();
+		user.run();
 
 	}
 
