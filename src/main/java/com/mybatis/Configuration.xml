@@ -17,6 +17,9 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="com/mybatis/DeptMapper.xml"/>
+    <mapper resource="com/mybatis/MailBoxMapper.xml"/>
+    <mapper resource="com/mybatis/MailMapper.xml"/>
+    <mapper resource="com/mybatis/MailVisualMapper.xml"/>
+    <mapper resource="com/mybatis/UserMapper.xml"/>
   </mappers>
 </configuration>
