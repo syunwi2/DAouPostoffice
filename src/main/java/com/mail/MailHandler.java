@@ -1,5 +1,9 @@
 package com.mail;
 
-public class MailHandler {
+import java.util.Arrays;
+
+class MailHandler {
+	
+	
 	
 }
