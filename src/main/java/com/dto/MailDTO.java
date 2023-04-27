@@ -1,6 +1,6 @@
 package com.dto;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class MailDTO {
 	String mail_title;
 	String mail_content;
 	int mail__anonymity;
-	Calendar mail_date;
+	Date mail_date;
 	int send_user_no;
 	int receive_user_no;
 }
