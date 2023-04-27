@@ -12,7 +12,7 @@
    </select>
    
    <!-- 저장  -->
-   <insert id="insertMail" parameterType="com.dto.MailDTO">
+   <insert id="insertMail" parameterType="com.dto.MailDTO" useGeneratedKeys="true" keyProperty="mail_no">
      insert into mail (mail_title, mail_contents, mail__anonymity, mail_date, send_user_no, receive_user_no)
      values  (#{mail_title}, #{mail_contents}, #{mail__anonymity}, #{mail_date}, #{send_user_no}, #{receive_user_no})
    </insert>

@@ -17,7 +17,7 @@
    </select>
    
    <!-- 저장  -->
-   <insert id="insertUser" parameterType="com.dto.UserDTO">
+   <insert id="insertUser" parameterType="com.dto.UserDTO" useGeneratedKeys="true" keyProperty="user_no">
      insert into user (user_id, user_passwd, user_name)
      values  ( #{user_id}, #{user_passwd}, #{user_name} )
    </insert>
