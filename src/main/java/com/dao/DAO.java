@@ -82,12 +82,12 @@ public class DAO {
 	}
 	
 	public List<MailDTO> findMail(SqlSession session, int receive_user_no) {
-		List<MailDTO> list = session.selectList("findMailBox", receive_user_no);
+		List<MailDTO> list = session.selectList("findMail", receive_user_no);
 		return list;
 	}
 	
 	public MailVisualDTO findMailVisual(SqlSession session, int mail_mail_no) {
-		MailVisualDTO list = session.selectOne("findMailBox", mail_mail_no);
+		MailVisualDTO list = session.selectOne("findMailVisual", mail_mail_no);
 		return list;
 	}
 }
