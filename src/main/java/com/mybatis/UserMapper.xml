@@ -5,6 +5,11 @@
 <mapper namespace="com.mybatis.UserMapper">
  
    <!--  조회  -->
+   <select id="isIDused" parameterType="String" resultType="com.dto.UserDTO">
+     select *
+     from users
+     where user_id=#{id}
+   </select>
    <select id="findUser" parameterType="com.dto.UserDTO" resultType="com.dto.UserDTO">
      select *
      from users
