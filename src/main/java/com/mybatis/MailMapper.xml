@@ -2,54 +2,25 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.DeptMapper">
+<mapper namespace="com.mybatis.MailMapper">
  
-   <!--  조회 
-      DeptDTO의 변수명과 select의 컬럼헤더값과 일치해야 된다.
-      정확히는 변수명이 아닌 setter 메서드와 일치해야 된다.
-    -->
-   <select id="findAll"
-    resultType="com.dto.DeptDTO">
-     select deptno, dname, loc
-     from dept
-   </select>
-   <select id="findAllDesc" resultType="com.dto.DeptDTO">
+   <!--  조회  -->
+   <select id="findMail" parameterType="int" resultType="com.dto.MailDTO">
      select *
-     from dept
-     order by deptno desc
-   </select>
-   <select id="findByDeptno" parameterType="int" resultType="com.dto.DeptDTO">
-     select deptno, dname, loc
-     from dept
-     where deptno = #{deptno}
+     from mail
+     where receive_user_no=#{receive_user_no}
    </select>
    
-   <!-- 저장 
-      DeptDTO에 있는 변수값을 가져와서 #{변수명}에 치환한다.
-      정확히는 변수값이 아니고 getter 메서드명이다.
-   -->
-   <insert id="insert" parameterType="com.dto.DeptDTO">
-     insert into dept ( deptno, dname, loc)
-     values  ( #{deptno}, #{dname}, #{loc} )
+   <!-- 저장  -->
+   <insert id="insertMail" parameterType="com.dto.MailDTO">
+     insert into mail (mail_title, mail_contents, mail__anonymity, mail_date, send_user_no, receive_user_no)
+     values  (#{mail_title}, #{mail_contents}, #{mail__anonymity}, #{mail_date}, #{send_user_no}, #{receive_user_no})
    </insert>
    
-   <!-- 수정
-      DeptDTO에 있는 변수값을 가져와서 #{변수명}에 치환한다.
-      정확히는 변수값이 아니고 getter 메서드명이다.
-    -->
-   <update id="update" parameterType="com.dto.DeptDTO">
-     update dept
-     set dname = #{dname}, loc=#{loc}
-     where deptno=#{deptno}
-   </update>
-   
-   <!-- 삭제 
-      자바코드에서 전달한 int deptno에 값을 가져와서 #{deptno}에 치환
-      하고 전달 타입을 parameterType에 지정한다.
-   -->
-   <delete id="delete" parameterType="int">
-     delete from dept
-     where deptno=#{deptno}
+   <!-- 삭제  -->
+   <delete id="deleteMail" parameterType="int">
+     delete from mail
+     where mail_no=#{mail_no}
    </delete>
    
 </mapper>

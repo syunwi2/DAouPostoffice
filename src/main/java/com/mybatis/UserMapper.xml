@@ -2,51 +2,37 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mybatis.DeptMapper">
+<mapper namespace="com.mybatis.UserMapper">
  
    <!--  조회  -->
-   <select id="findAll"
-    resultType="com.dto.DeptDTO">
-     select deptno, dname, loc
-     from dept
-   </select>
-   <select id="findAllDesc" resultType="com.dto.DeptDTO">
+   <select id="findUser" parameterType="com.dto.UserDTO" resultType="com.dto.UserDTO">
      select *
-     from dept
-     order by deptno desc
+     from user
+     where user_id=#{user_name} and user_passwd=#{user_passwd}
    </select>
-   <select id="findByDeptno" parameterType="int" resultType="com.dto.DeptDTO">
-     select deptno, dname, loc
-     from dept
-     where deptno = #{deptno}
+   <select id="findUserAll" parameterType="String" resultType="com.dto.UserDTO">
+     select *
+     from user
+     where user_name=#{user_name}
    </select>
    
-   <!-- 저장 
-      DeptDTO에 있는 변수값을 가져와서 #{변수명}에 치환한다.
-      정확히는 변수값이 아니고 getter 메서드명이다.
-   -->
-   <insert id="insert" parameterType="com.dto.DeptDTO">
-     insert into dept ( deptno, dname, loc)
-     values  ( #{deptno}, #{dname}, #{loc} )
+   <!-- 저장  -->
+   <insert id="insertUser" parameterType="com.dto.UserDTO">
+     insert into user (user_id, user_passwd, user_name)
+     values  ( #{user_id}, #{user_passwd}, #{user_name} )
    </insert>
    
-   <!-- 수정
-      DeptDTO에 있는 변수값을 가져와서 #{변수명}에 치환한다.
-      정확히는 변수값이 아니고 getter 메서드명이다.
-    -->
-   <update id="update" parameterType="com.dto.DeptDTO">
-     update dept
-     set dname = #{dname}, loc=#{loc}
-     where deptno=#{deptno}
+   <!-- 수정  -->
+   <update id="updateUser" parameterType="com.dto.UserDTO">
+     update user
+     set user_passwd = #{user_passwd}, user_name=#{user_name}
+     where user_no=#{user_no}
    </update>
    
-   <!-- 삭제 
-      자바코드에서 전달한 int deptno에 값을 가져와서 #{deptno}에 치환
-      하고 전달 타입을 parameterType에 지정한다.
-   -->
-   <delete id="delete" parameterType="int">
-     delete from dept
-     where deptno=#{deptno}
+   <!-- 삭제  -->
+   <delete id="deleteUser" parameterType="int">
+     delete from user
+     where user_no=#{user_no}
    </delete>
    
 </mapper>
