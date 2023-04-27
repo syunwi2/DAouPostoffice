@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.dto.UserDTO;
+import com.service.Service;
+import com.service.ServiceImpl;
 
 public class UserHandler {
 	
@@ -45,18 +47,26 @@ public class UserHandler {
 	public void signup() {
 		System.out.println(" signup");
 		System.out.println(" ======================== ");
+
 		//id check
-		do {
-			System.out.println("id input pz");
-			try {
-				dto.setUser_id(scan.next());
-				
-				
-			} catch(Exception e) {
-				System.out.println(e.getMessage());
-			}
+
+		System.out.println("id input pz");
+		try {
+			System.out.println(" 아이디를 입력하시오. ");
+			String idPut = scan.next();
+			System.out.println(" 비밀번호를 입력하시오. ");
+			String pwPut = scan.next();
+			System.out.println(" 이름을 입력하시오. ");
+			String namePut = scan.next();
+			System.out.println(idPut+"\t"+pwPut+"\t"+namePut);
+			UserDTO dto = new UserDTO(3, idPut, pwPut, namePut);
+			Service service = new ServiceImpl();
+			int n = service.insertUser(dto);
 			
-		} while(false);
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 		//passward check
 		
 		//name check
