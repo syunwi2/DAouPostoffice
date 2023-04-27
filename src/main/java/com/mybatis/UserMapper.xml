@@ -4,10 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.DeptMapper">
  
-   <!--  조회 
-      DeptDTO의 변수명과 select의 컬럼헤더값과 일치해야 된다.
-      정확히는 변수명이 아닌 setter 메서드와 일치해야 된다.
-    -->
+   <!--  조회  -->
    <select id="findAll"
     resultType="com.dto.DeptDTO">
      select deptno, dname, loc
