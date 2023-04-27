@@ -7,31 +7,34 @@
    <!--  조회  -->
    <select id="findUser" parameterType="com.dto.UserDTO" resultType="com.dto.UserDTO">
      select *
-     from user
+     from users
      where user_id=#{user_name} and user_passwd=#{user_passwd}
    </select>
    <select id="findUserAll" parameterType="String" resultType="com.dto.UserDTO">
      select *
-     from user
+     from users
      where user_name=#{user_name}
    </select>
    
    <!-- 저장  -->
-   <insert id="insertUser" parameterType="com.dto.UserDTO" useGeneratedKeys="true" keyProperty="user_no">
-     insert into user (user_id, user_passwd, user_name)
-     values  ( #{user_id}, #{user_passwd}, #{user_name} )
+   <insert id="insertUser" parameterType="com.dto.UserDTO">
+   		<selectKey keyProperty="user_no" order="BEFORE" resultType="int">
+		select user_no.nextval from dual
+		</selectKey>
+    	insert into users (user_no, user_id, user_passwd, user_name)
+    	values  (#{user_no}, #{user_id}, #{user_passwd}, #{user_name} )
    </insert>
    
    <!-- 수정  -->
    <update id="updateUser" parameterType="com.dto.UserDTO">
-     update user
+     update users
      set user_passwd = #{user_passwd}, user_name=#{user_name}
      where user_no=#{user_no}
    </update>
    
    <!-- 삭제  -->
    <delete id="deleteUser" parameterType="int">
-     delete from user
+     delete from users
      where user_no=#{user_no}
    </delete>
    
