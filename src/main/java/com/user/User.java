@@ -21,8 +21,8 @@ public class User implements MailBox {
 		
 		String sql = "select textcolor, shape from MailBox where id =" + this.id;
 		System.out.println(sql);
-		this.setTextColorindex(5); // 더미값 대입
-		this.setShapeIndex(3); // 더미값 대입
+		this.setTextColorindex(2); // 더미값 대입
+		this.setShapeIndex(0); // 더미값 대입
 		
 	}
 	
