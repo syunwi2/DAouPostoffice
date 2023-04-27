@@ -52,14 +52,35 @@ public class UserHandler {
 
 		System.out.println("id input pz");
 		try {
-			System.out.println(" 아이디를 입력하시오. ");
-			String idPut = scan.next();
-			System.out.println(" 비밀번호를 입력하시오. ");
-			String pwPut = scan.next();
+			String idPut, pwPut, pwPut2;
+			do {
+				System.out.println(" 아이디를 입력하시오. ");
+				idPut = scan.next();
+				
+				Service service = new ServiceImpl();
+				UserDTO tdoi = service.isIDused(idPut);
+				if (tdoi == null) {
+					break;
+				}
+			} while(true);
+			
+			do {
+				System.out.println(" 비밀번호를 입력하시오. ");
+				pwPut = scan.next();
+				System.out.println(" 비밀번호를 한번 더 입력하시오. ");
+				pwPut2 = scan.next();
+				if (pwPut.equals(pwPut2)) {
+					System.out.println("비밀번호가 일치합니다.");
+				} else {
+					System.out.println("비밀번호가 일치하지 않습니다.");
+				}
+			} while(pwPut.equals(pwPut2));
+			
 			System.out.println(" 이름을 입력하시오. ");
 			String namePut = scan.next();
 			System.out.println(idPut+"\t"+pwPut+"\t"+namePut);
-			UserDTO dto = new UserDTO(3, idPut, pwPut, namePut);
+			
+			UserDTO dto = new UserDTO(0, idPut, pwPut, namePut);
 			Service service = new ServiceImpl();
 			int n = service.insertUser(dto);
 			
@@ -67,9 +88,6 @@ public class UserHandler {
 			System.out.println(e.getMessage());
 		}
 
-		//passward check
-		
-		//name check
 		
 	}
 	//login in
