@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.MailBoxMapper">
+ 
+   <!--  조회  -->
+   <select id="findMailBox" parameterType="int" resultType="com.dto.MailBoxDTO">
+     select mailbox_color, mailbox_shape, user_user_no
+     from mailbox
+     where user_user_no=#{user_user_no}
+   </select>
+   
+   <!-- 저장  -->
+   <insert id="insertMailBox" parameterType="com.dto.MailBoxDTO">
+     insert into mailbox (mailbox_color, mailbox_shape, user_user_no)
+     values  (#{mailbox_color}, #{mailbox_shape}, #{user_user_no})
+   </insert>
+   
+   <!-- 수정  -->
+   <update id="updateMailBox" parameterType="com.dto.MailBoxDTO">
+     update mailbox
+     set mailbox_color = #{mailbox_color}, mailbox_shape=#{mailbox_shape}
+     where user_user_no=#{user_user_no}
+   </update>
+   
+   <!-- 삭제  -->
+   <delete id="deleteMailBox" parameterType="int">
+     delete from mailbox
+     where user_user_no=#{user_user_no}
+   </delete>
+   
+</mapper>
