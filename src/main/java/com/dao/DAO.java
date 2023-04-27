@@ -7,18 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import com.dto.*;
 
 public class DAO {
-//	int n = session.insert("mapper의 id값", 파라미터);
-//	int n = session.delete("mapper의 id값", 파라미터);
-//	int n = session.update("mapper의 id값", 파라미터);
-	
-	//결과가 여러개
-//	List<DeptDTO> list =session.selectList("id값");
-//	List<DeptDTO> list =session.selectList("id값", 파라미터);
-//	List<DeptDTO> list =session.selectList("id값", 파라미터, RowBounds);
-	
-	//결과가 하나
-//	DeptDTO dto = session.selectOne("id값");
-//	DeptDTO dto = session.selectOne("id값", 파라미터);
 
 	// insert
 	public int insertUser(SqlSession session, UserDTO dto) {
@@ -74,8 +62,8 @@ public class DAO {
 	}
 	
 	// select
-	public List<UserDTO> findUser(SqlSession session, UserDTO dto) {
-		List<UserDTO> list = session.selectOne("findUser", dto);
+	public UserDTO findUser(SqlSession session, UserDTO dto) {
+		UserDTO list = session.selectOne("findUser", dto);
 		return list;
 	}
 	
