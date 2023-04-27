@@ -62,6 +62,10 @@ public class DAO {
 	}
 	
 	// select
+	public UserDTO isIDused(SqlSession session, String user_id) {
+		UserDTO list = session.selectOne("isIDused", user_id);
+		return list;
+	}
 	public UserDTO findUser(SqlSession session, UserDTO dto) {
 		UserDTO list = session.selectOne("findUser", dto);
 		return list;
