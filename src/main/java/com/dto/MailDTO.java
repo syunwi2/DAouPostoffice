@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class MailDTO {
 	int mail_no;
 	String mail_title;
-	String mail_content;
+	String mail_contents;
 	int mail__anonymity;
 	Date mail_date;
 	int send_user_no;
