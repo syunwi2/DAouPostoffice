@@ -1,9 +1,12 @@
 package com.service;
+import com.mail.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	
+		Mail mail = new Mail();
+		System.out.println(Mail.BANNER[2]);
 
 	}
 
