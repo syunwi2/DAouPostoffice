@@ -99,6 +99,8 @@ public class UserHandler {
 	}
 	//logout
 	public void logout() {
-		
+		// 로그인이 되지 않으면 로그아웃 선택지는 없음
+		// 로그아웃을 하면 메인페이지 이동
+		System.out.println("로그아웃");
 	}
 }
