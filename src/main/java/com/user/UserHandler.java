@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.dto.MailBoxDTO;
 import com.dto.UserDTO;
 import com.service.Service;
 import com.service.ServiceImpl;
@@ -44,6 +45,7 @@ public class UserHandler {
 
 		//System.out.println("id input pz");
 		try {
+			//유저테이블 행 추가
 			String idPut, pwPut, pwPut2;
 			do {
 				System.out.println("아이디를 입력해 주세요. ");
@@ -77,7 +79,10 @@ public class UserHandler {
 			UserDTO dto = new UserDTO(0, idPut, pwPut, namePut);
 			Service service = new ServiceImpl();
 			int n = service.insertUser(dto);
-			
+			//메일박스 테이블 행 추가
+			MailBoxDTO dtom = new MailBoxDTO(0, 0, dto.getUser_no());
+			Service service2 = new ServiceImpl();
+			int m = service2.insertMailBox(dtom);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
