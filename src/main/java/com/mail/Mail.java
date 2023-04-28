@@ -17,7 +17,7 @@ public class Mail implements MailVisual {
 		
 	}
 	
-	public void send(){
+	public static void send(Mail sendMail){
 		
 	}
 

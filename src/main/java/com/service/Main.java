@@ -6,8 +6,13 @@ public class Main {
 	public static void main(String[] args) {
 	
 		Mail mail = new Mail();
-		System.out.println(Mail.BANNER[2]);
+		MailHandler userHandler = new MailHandler();
+		
+		System.out.printf(Mail.BANNER[0]);
+		
+		Mail.send(MailHandler.sendMail());
 
+		
 	}
 
 }
