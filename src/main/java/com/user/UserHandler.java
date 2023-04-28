@@ -104,12 +104,13 @@ public class UserHandler {
         dto = service.findUser(dto);
         System.out.println(dto);
         if (dto != null) {
+        	user.setUser_no(dto.getUser_no());
         	user.setId(dto.getUser_id());
         	user.setPasswd(dto.getUser_passwd());
         	user.setName(dto.getUser_name());
+        	System.out.println(user);
+        	System.out.println("로그인에 성공하였습니다.");
         }
-        	
-        
 	}
 	//logout
 	public void logout() {
