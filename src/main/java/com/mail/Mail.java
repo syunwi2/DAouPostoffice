@@ -5,14 +5,10 @@ import java.text.SimpleDateFormat;
 
 import com.dto.MailDTO;
 import com.service.ServiceImpl;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Mail implements MailVisual {
 
 	int textColorindex;
@@ -26,6 +22,11 @@ public class Mail implements MailVisual {
 	String openDate;//Date로 변경
 	
 	//String 형태로 받은 날짜 정보를 db에 넣기 위해 date 타입으로 변환하는 함수
+	
+//	private boolean isRightFormat(String date) {
+//		
+//		return date ==
+//	}
 	private Date transformDate(String date)
 	    {
 	        SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyymmdd");
@@ -63,7 +64,7 @@ public class Mail implements MailVisual {
 		this.bannerindex = 0;
 		this.backgroundColorindex = 7;
 		this.textColorindex = 0;
-		this.content = "삼성전자는 메모리 반도체 시장 불황에 경쟁사들이 투자 축소와 감산 기조를 밝혔을 때도 '(삼성전자에) 인위적인 감산은 없다'는 입장을 고수해 왔다. 하지만 손실이 커지자, 반도체 생산 유지를 통한 점유율 확대보다 감산으로 수익성을 확대하는 길을 택했다. 삼성전자는 앞서 지난 7일 1분기 잠정 실적 발표 시 의미 있는 수준까지 메모리 생산량을 하향 조정 중이라고 했었다. 이라며 사실상 감산을 처음으로 공식 인정했다.";
+		this.content = "삼성전자는 메모리 반도체 시장 불황에 경쟁사들이 투자 축소와 감산 기조를 밝혔을 때도 ‘(삼성전자에) 인위적인 감산은 없다’는 입장을 고수해 왔다. 하지만 손실이 커지자, 반도체 생산 유지를 통한 점유율 확대보다 감산으로 수익성을 확대하는 길을 택했다. 삼성전자는 앞서 지난 7일 1분기 잠정 실적 발표 시 “의미 있는 수준까지 메모리 생산량을 하향 조정 중”이라고 했었다. 이라며 사실상 감산을 처음으로 공식 인정했다.";
 		System.out.printf(BANNER[this.bannerindex]);
 		
 		//String[] contentsBuffer = this.content.split("(?<=\\G.{" + 50 + "})"); 
@@ -88,3 +89,6 @@ public class Mail implements MailVisual {
 		
 		 
 	}
+
+	
+	
