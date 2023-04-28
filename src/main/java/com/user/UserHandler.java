@@ -103,8 +103,12 @@ public class UserHandler {
         Service service = new ServiceImpl();
         dto = service.findUser(dto);
         System.out.println(dto);
-        if (dto != null)
-        	System.out.println("login success.");
+        if (dto != null) {
+        	user.setId(dto.getUser_id());
+        	user.setPasswd(dto.getUser_passwd());
+        	user.setName(dto.getUser_name());
+        }
+        	
         
 	}
 	//logout
