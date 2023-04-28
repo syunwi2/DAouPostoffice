@@ -63,7 +63,7 @@ public class UserHandler {
 				} else {
 					System.out.println("비밀번호가 일치하지 않습니다.");
 				}
-			} while(pwPut.equals(pwPut2));
+			} while(!pwPut.equals(pwPut2));
 			
 			System.out.println(" 이름을 입력하시오. ");
 			String namePut = scan.next();
