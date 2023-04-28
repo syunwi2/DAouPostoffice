@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.dto.MailBoxDTO;
 import com.dto.UserDTO;
 import com.service.Service;
 import com.service.ServiceImpl;
@@ -17,7 +18,7 @@ public class UserHandler {
 	//run
 	public void run() {
 		System.out.println("choice pz");
-		System.out.println("1: sign === 2: login === ");		
+		System.out.println("1: sign === 2: login === 3: logout ===");		
 		int ch=0;
 		switch (ch=scan.nextInt()) {
 			case 1:
@@ -25,6 +26,9 @@ public class UserHandler {
 				break;
 			case 2:
 				login();
+				break;
+			case 3:
+				logout();
 				break;
 		}
 	}
@@ -39,11 +43,12 @@ public class UserHandler {
 
 		//id check
 
-		System.out.println("id input pz");
+		//System.out.println("id input pz");
 		try {
+			//유저테이블 행 추가
 			String idPut, pwPut, pwPut2;
 			do {
-				System.out.println(" 아이디를 입력하시오. ");
+				System.out.println("아이디를 입력해 주세요. ");
 				idPut = scan.next();
 				
 				Service service = new ServiceImpl();
@@ -51,6 +56,8 @@ public class UserHandler {
 				if (tdoi == null) {
 					break;
 				}
+				System.out.println("아이디가 이미 존재합니다. ");
+				System.out.println("다시 입력해 주세요. ");
 			} while(true);
 			
 			do {
@@ -63,7 +70,7 @@ public class UserHandler {
 				} else {
 					System.out.println("비밀번호가 일치하지 않습니다.");
 				}
-			} while(pwPut.equals(pwPut2));
+			} while(!pwPut.equals(pwPut2));
 			
 			System.out.println(" 이름을 입력하시오. ");
 			String namePut = scan.next();
@@ -72,7 +79,10 @@ public class UserHandler {
 			UserDTO dto = new UserDTO(0, idPut, pwPut, namePut);
 			Service service = new ServiceImpl();
 			int n = service.insertUser(dto);
-			
+			//메일박스 테이블 행 추가
+			MailBoxDTO dtom = new MailBoxDTO(0, 0, dto.getUser_no());
+			Service service2 = new ServiceImpl();
+			int m = service2.insertMailBox(dtom);
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -99,6 +109,12 @@ public class UserHandler {
 	}
 	//logout
 	public void logout() {
-		
+		// 로그인이 되지 않으면 로그아웃 선택지는 없음
+		// 로그아웃을 하면 메인페이지 이동
+		User user = null;
+		UserDTO dto = null;
+		System.out.println("로그아웃");
+		System.out.println(dto);
+		run();
 	}
 }
