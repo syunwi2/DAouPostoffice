@@ -2,6 +2,7 @@ package com.mail;
 
 import java.util.Scanner;
 
+
 public class MailHandler {
 	
 public static Mail sendMail() {	
