@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.dto.MailBoxDTO;
 import com.dto.UserDTO;
+import com.exception.RecordNotFoundException;
 import com.service.Service;
 import com.service.ServiceImpl;
 
@@ -18,7 +19,7 @@ public class UserHandler {
 	//run
 	public void run() {
 		System.out.println("choice pz");
-		System.out.println("1: sign === 2: login === 3: logout ===");		
+		System.out.println("1: sign === 2: login === 3: logout === 4: withdrawal");		
 		int ch=0;
 		switch (ch=scan.nextInt()) {
 			case 1:
@@ -29,6 +30,9 @@ public class UserHandler {
 				break;
 			case 3:
 				logout();
+				break;
+			case 4:
+				withdrawal();
 				break;
 		}
 	}
@@ -103,9 +107,15 @@ public class UserHandler {
         Service service = new ServiceImpl();
         dto = service.findUser(dto);
         System.out.println(dto);
-        if (dto != null)
-        	System.out.println("login success.");
-        
+        if (dto != null) {
+        	user.setUser_no(dto.getUser_no());
+        	user.setId(dto.getUser_id());
+        	user.setPasswd(dto.getUser_passwd());
+        	user.setName(dto.getUser_name());
+        	System.out.println(user);
+        	System.out.println("로그인에 성공하였습니다.");
+        }
+        //withdrawal();
 	}
 	//logout
 	public void logout() {
@@ -117,4 +127,36 @@ public class UserHandler {
 		System.out.println(dto);
 		run();
 	}
+	
+	//메일박스 업데이트
+	public void mailBoxUpdate() {
+		
+	}
+	//회원탈퇴
+	public void withdrawal() {
+		System.out.println("회원탈퇴 시작");
+		System.out.println("정말 탈퇴하시겠습니까? 탈퇴하시려면 1번을 눌러주세요. ");
+		System.out.println("다른키를 누르면 메인화면으로 돌아갑니다. ");
+		int h = scan.nextInt();
+		if (h==1)
+		{
+			Service service = new ServiceImpl();
+			try {
+				//유저테이블 행 삭제
+				int n = service.deleteUser(user.getUser_no());
+				//메일박스 행 삭제
+				//int m = service.deleteMailBox(user.getUser_no());
+				//메일 삭제
+				
+			} catch (RecordNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
+			System.out.println("회원탈퇴에 성공하였습니다.");
+			//자동 로그아웃 및 메인페이지이동 ->  logout?
+		}
+		else {
+			System.out.println("회원탈퇴 취소합니다.");
+		}
+	}
+	
 }
