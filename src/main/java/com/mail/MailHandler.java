@@ -7,7 +7,6 @@ import com.dto.MailDTO;
 import com.dto.UserDTO;
 import com.service.ServiceImpl;
 
-
 public class MailHandler {
 	
 public void sendMail(UserDTO dto) {	
