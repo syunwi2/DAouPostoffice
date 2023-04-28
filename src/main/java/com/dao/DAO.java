@@ -76,6 +76,11 @@ public class DAO {
 		return list;
 	}
 	
+	public UserDTO findUserByUserNo(SqlSession session, int user_no) {
+		UserDTO list = session.selectOne("findUserByUserNo", user_no);
+		return list;
+	}
+	
 	public MailBoxDTO findMailBox(SqlSession session, int user_user_no) {
 		MailBoxDTO list = session.selectOne("findMailBox", user_user_no);
 		return list;
@@ -83,6 +88,11 @@ public class DAO {
 	
 	public List<MailDTO> findMail(SqlSession session, int receive_user_no) {
 		List<MailDTO> list = session.selectList("findMail", receive_user_no);
+		return list;
+	}
+	
+	public MailDTO findMailByMailNo(SqlSession session, int mail_no) {
+		MailDTO list = session.selectOne("findMailByMailNo", mail_no);
 		return list;
 	}
 	

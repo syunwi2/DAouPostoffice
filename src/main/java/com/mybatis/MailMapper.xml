@@ -10,6 +10,11 @@
      from mail
      where receive_user_no=#{receive_user_no}
    </select>
+   <select id="findMailByMailNo" parameterType="int" resultType="com.dto.MailDTO">
+     select *
+     from mail
+     where mail_no=#{mail_no}
+   </select>
    
    <!-- 저장  -->
    <insert id="insertMail" parameterType="com.dto.MailDTO">
