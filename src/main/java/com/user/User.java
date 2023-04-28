@@ -1,4 +1,8 @@
 package com.user;
+import com.dto.MailBoxDTO;
+import com.dto.MailDTO;
+import com.service.Service;
+import com.service.ServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,18 +15,19 @@ import java.util.List;
 
 public class User implements MailBox {
 	public static final String exit     = "\u001B[0m";
-	String id = "kk2522"; // 더미값
+	int user_no = 14;
+	String id; // 더미값
 	String passwd;
 	String name;
 	int textColorindex;
 	int shapeIndex;
 	List<String> receiveMails = new ArrayList<String>();
 	public void getBox() {
-		
-		String sql = "select textcolor, shape from MailBox where id =" + this.id;
-		System.out.println(sql);
-		this.setTextColorindex(2); // 더미값 대입
-		this.setShapeIndex(0); // 더미값 대입
+		MailBoxDTO box = new MailBoxDTO();
+		Service service = new ServiceImpl();
+		box = service.findMailBox(this.user_no);
+		this.setTextColorindex(box.getMailbox_color()); // 더미값 대입
+		this.setShapeIndex(box.getMailbox_shape()); // 더미값 대입
 		
 	}
 	
