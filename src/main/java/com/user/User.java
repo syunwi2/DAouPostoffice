@@ -1,6 +1,8 @@
 package com.user;
+import com.mail.Mail;
 import com.dto.MailBoxDTO;
 import com.dto.MailDTO;
+import com.exception.RecordNotFoundException;
 import com.service.Service;
 import com.service.ServiceImpl;
 import lombok.AllArgsConstructor;
@@ -21,7 +23,7 @@ public class User implements MailBox {
 	String name;
 	int textColorindex;
 	int shapeIndex;
-	List<String> receiveMails = new ArrayList<String>();
+	List<Mail> receiveMails = new ArrayList<Mail>();
 	public void getBox() {
 		MailBoxDTO box = new MailBoxDTO();
 		Service service = new ServiceImpl();
@@ -33,15 +35,14 @@ public class User implements MailBox {
 	
 	
 	public void viewBox() {
-		String sql = "select m.mail_title, m.mail_anonymity,"
-				+ "m.mail_date,m.send_user_no from Mail m,"
-				+ " User u where u.user_no = m.receive_user_no and"
-				+ " user_id =" + this.id;
-		
+		List<MailDTO> m = new ArrayList<MailDTO>();
+		Service service = new ServiceImpl();
+		m = service.findMail(user_no);
+		System.out.println(m);
 		String[] temp = { "aa", "bb", "cc" };
-		for(String i : temp) {
-			this.receiveMails.add(i); // 갖고온 mail receiveMail에 넣음
-		}
+//		for(MailDTO i : m) {
+//			this.receiveMails.add(i); // 갖고온 mail receiveMail에 넣음
+//		}
 		String tmp = null;
 		switch(this.textColorindex)// shapeindex 별로 출력
 		{
@@ -93,17 +94,14 @@ public class User implements MailBox {
 	}
 
 	public void upDateBox(int textColor, int shape) {
-		this.setTextColorindex(textColor);
-		this.setShapeIndex(shape);
-		String sql = "update Mailbox m inner join User u"
-				+ "on m.user_no = u.User_user_no"
-				+ "set m.mailbox_color ="
-		+ this.getTextColorindex()
-		+", m.mailbox_shape = " 
-		+ this.getShapeIndex() +
-		"where u.user_id = " + this.id;
 		
-		
+		MailBoxDTO box = new MailBoxDTO(textColor,shape,user_no);
+		Service service = new ServiceImpl();
+		try {
+			service.updateMailBox(box);
+		} catch (RecordNotFoundException e) {
+			e.getMessage();
+		}
 		
 	}
 	
