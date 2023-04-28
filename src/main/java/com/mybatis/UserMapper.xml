@@ -20,6 +20,11 @@
      from users
      where user_name=#{user_name}
    </select>
+   <select id="findUserByUserNo" parameterType="int" resultType="com.dto.UserDTO">
+     select *
+     from users
+     where user_no=#{user_no}
+   </select>
    
    <!-- 저장  -->
    <insert id="insertUser" parameterType="com.dto.UserDTO">
