@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import com.dto.MailDTO;
 import com.service.ServiceImpl;
 import lombok.*;
+import com.exception.OutofDateException;
 
 @Data
 @NoArgsConstructor
@@ -61,11 +62,11 @@ public class Mail implements MailVisual {
 		//findMail(수신자번호 = 로그인한 유저 번호).get(mail_no).getMail_contents()
 		//로그인한 유저 아이디 main 함수에서 저장해놔야할듯 ㅇㅅㅇ
 //		
-		this.bannerindex = 0;
-		this.backgroundColorindex = 7;
-		this.textColorindex = 0;
-		this.content = "삼성전자는 메모리 반도체 시장 불황에 경쟁사들이 투자 축소와 감산 기조를 밝혔을 때도 ‘(삼성전자에) 인위적인 감산은 없다’는 입장을 고수해 왔다. 하지만 손실이 커지자, 반도체 생산 유지를 통한 점유율 확대보다 감산으로 수익성을 확대하는 길을 택했다. 삼성전자는 앞서 지난 7일 1분기 잠정 실적 발표 시 “의미 있는 수준까지 메모리 생산량을 하향 조정 중”이라고 했었다. 이라며 사실상 감산을 처음으로 공식 인정했다.";
-		System.out.printf(BANNER[this.bannerindex]);
+//		this.bannerindex = 0;
+//		this.backgroundColorindex = 7;
+//		this.textColorindex = 0;
+//		this.content = "삼성전자는 메모리 반도체 시장 불황에 경쟁사들이 투자 축소와 감산 기조를 밝혔을 때도 ‘(삼성전자에) 인위적인 감산은 없다’는 입장을 고수해 왔다. 하지만 손실이 커지자, 반도체 생산 유지를 통한 점유율 확대보다 감산으로 수익성을 확대하는 길을 택했다. 삼성전자는 앞서 지난 7일 1분기 잠정 실적 발표 시 “의미 있는 수준까지 메모리 생산량을 하향 조정 중”이라고 했었다. 이라며 사실상 감산을 처음으로 공식 인정했다.";
+//		System.out.printf(BANNER[this.bannerindex]);
 		
 		//String[] contentsBuffer = this.content.split("(?<=\\G.{" + 50 + "})"); 
 		
@@ -78,14 +79,44 @@ public class Mail implements MailVisual {
 			int receiver_no = serviceimpl.isIDused(receiver).getUser_no();
 			int sender_no = serviceimpl.isIDused(sender).getUser_no();
 			Date date = this.transformDate(this.openDate);
-			dto.setMail_contents(content);
+			dto.setMail_contents(this.content);
 			dto.setMail_date(date);
 			dto.setMail__anonymity(this.mail_anonymity);
 			dto.setMail_title(this.title);
 			dto.setReceive_user_no(receiver_no);
 			dto.setSend_user_no(sender_no);
+			
+			int n = 0;
+			try{
+				n = serviceimpl.insertMail(dto);
+			}catch(Exception e) {
+				e.getMessage();
+			} finally {
+				System.out.println(n + "개의 편지가 발송되었습니다.");
+			}
 	}
-		
+	public boolean checkDateFormat(String date) {
+    	boolean flag = false;
+    	String curTime = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date()).toString();
+    	SimpleDateFormat dateFormatParser = new SimpleDateFormat("yyyyMMdd");//검증할 날짜 포맷 설정
+    	try {
+            dateFormatParser.setLenient(false); //입력한 값 잘못된 형식일 경우 오류 발생
+            dateFormatParser.parse(date); //대상 값 포맷에 적용되는지 확인
+            
+            if(Integer.parseInt(date)<Integer.parseInt(curTime)) {
+            	//과거 날짜 입력 시 예외 발생
+            	throw new OutofDateException("유효한 날짜를 입력해주세요.");
+            }
+
+        } catch (ParseException e) {
+            flag =  true;
+            System.out.println("형식에 맞게 입력해주세요(yyyymmdd)");
+        } catch(OutofDateException e) {
+        	flag = true;
+        	System.out.println("유효한 날짜를 입력해주세요.");
+        }
+    	return flag;
+    }
 		
 		 
 	}
