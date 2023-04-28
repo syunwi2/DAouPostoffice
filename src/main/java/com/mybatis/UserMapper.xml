@@ -5,7 +5,7 @@
 <mapper namespace="com.mybatis.UserMapper">
  
    <!--  조회  -->
-   <select id="isIDused" parameterType="String" resultType="com.dto.UserDTO">
+   <select id="isIDused" parameterType="string" resultType="com.dto.UserDTO">
      select *
      from users
      where user_id=#{id}
@@ -13,7 +13,7 @@
    <select id="findUser" parameterType="com.dto.UserDTO" resultType="com.dto.UserDTO">
      select *
      from users
-     where user_id=#{user_name} and user_passwd=#{user_passwd}
+     where user_id=#{user_id} and user_passwd=#{user_passwd}
    </select>
    <select id="findUserAll" parameterType="string" resultType="com.dto.UserDTO">
      select *
