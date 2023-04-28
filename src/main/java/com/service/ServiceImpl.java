@@ -200,6 +200,18 @@ public class ServiceImpl implements Service{
 
 	// ========== SELECT =========
 	@Override
+	public UserDTO isIDused(String user_id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		UserDTO list = null;
+		try {
+			DAO dao = new DAO();
+			list = dao.isIDused(session, user_id);
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+	@Override
 	public UserDTO findUser(UserDTO dto) {
 		SqlSession session = sqlSessionFactory.openSession();
 		UserDTO list = null;
@@ -259,5 +271,6 @@ public class ServiceImpl implements Service{
 		}
 		return list;
 	}
+	
 	
 }
