@@ -9,7 +9,7 @@ import com.service.ServiceImpl;
 
 public class MailHandler {
 	
-public void sendMail(UserDTO dto) {	
+public void sendMail(String user_id) {	
 	
 	Mail mail = new Mail();
 	Scanner scan = new Scanner(System.in);
@@ -62,11 +62,9 @@ public void sendMail(UserDTO dto) {
 	    } while (!anoy.equals("0") && !anoy.equals("1"));
 
 	    System.out.println("상대방이 편지를 읽을 수 있는 시간을 설정해주세요 (yyyymmdd)");
-	    String mailtime = null;
+	    String mailtime = "";
 	    do {
-	    	{
-	            mailtime = scan.nextLine();
-	        }
+	    	mailtime = scan.nextLine();
 	    } while (mail.checkDateFormat(mailtime));
 	    
 	    
@@ -76,14 +74,12 @@ public void sendMail(UserDTO dto) {
 	    mail.setContent(text);
 	    mail.setMail_anonymity(Integer.parseInt(anoy));//anoy를 그냥 숫자로 받는건 안되낭?
 	    mail.setOpenDate(mailtime);
-	    mail.setReceiver(mailtime);//작성 필요
-	    mail.setSender(dto.getUser_id());//UserDTO 받아와야하나?
+	    mail.setReceiver("master");//작성 필요
+	    mail.setSender(user_id);
 	    mail.setTextColorindex(count);
-	    mail.setTitle(mailtime);
+	    mail.setTitle("title");
 	    
 	    mail.send();
-	    
-	    
 	}
 	
 

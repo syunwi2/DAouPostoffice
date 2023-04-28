@@ -10,33 +10,18 @@ import com.exception.RecordNotFoundException;
 import com.service.Service;
 import com.service.ServiceImpl;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserHandler {
 	
 	User user = new User();
 	UserDTO dto = new UserDTO();
 	Scanner scan = new Scanner(System.in);
-
-	//run
-	public void run() {
-		System.out.println("choice pz");
-		System.out.println("1: sign === 2: login === 3: logout === 4: withdrawal");		
-		int ch=0;
-		switch (ch=scan.nextInt()) {
-			case 1:
-				signup();
-				break;
-			case 2:
-				login();
-				break;
-			case 3:
-				logout();
-				break;
-			case 4:
-				withdrawal();
-				break;
-		}
-	}
-	
 	
 	//sign up
 	//user에서 유저 클래스를 받아와서 객체 만들고 이 형식에 맞게 저장.
@@ -90,8 +75,6 @@ public class UserHandler {
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
-
-		
 	}
 	//login in
 	public void login() {
@@ -115,7 +98,9 @@ public class UserHandler {
         	System.out.println(user);
         	System.out.println("로그인에 성공하였습니다.");
         }
-        //withdrawal();
+        
+        user.getBox();
+        
 	}
 	//logout
 	public void logout() {
@@ -125,7 +110,6 @@ public class UserHandler {
 		UserDTO dto = null;
 		System.out.println("로그아웃");
 		System.out.println(dto);
-		run();
 	}
 	
 	//메일박스 업데이트
