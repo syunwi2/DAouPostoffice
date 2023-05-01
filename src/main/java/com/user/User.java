@@ -2,6 +2,7 @@ package com.user;
 import com.mail.Mail;
 import com.dto.MailBoxDTO;
 import com.dto.MailDTO;
+import com.dto.MailVisualDTO;
 import com.exception.RecordNotFoundException;
 import com.service.Service;
 import com.service.ServiceImpl;
@@ -10,7 +11,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import com.dto.UserDTO;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,13 +39,26 @@ public class User implements MailBox {
 	
 	public void viewBox() {
 		List<MailDTO> m = new ArrayList<MailDTO>();
+
 		Service service = new ServiceImpl();
 		m = service.findMail(user_no);
+		
 		System.out.println(m);
-		String[] temp = { "aa", "bb", "cc" };
-//		for(MailDTO i : m) {
-//			this.receiveMails.add(i); // 갖고온 mail receiveMail에 넣음
-//		}
+		for(MailDTO i : m) {
+			System.out.println(i.getReceive_user_no());
+			System.out.println(i.getSend_user_no());
+			MailVisualDTO m2 = service.findMailVisual(i.getMail_no());
+	
+			UserDTO m3 = service.findUserByUserNo(i.getSend_user_no());
+			UserDTO m4 = service.findUserByUserNo(i.getReceive_user_no());
+			receiveMails.add(new Mail(i.getMail_no(),m2.getText_color(),
+					m2.getBackground_color(),m2.getBanner(),
+					i.getMail__anonymity(), m3.getUser_name(),m4.getUser_name(),
+					i.getMail_title(),i.getMail_contents(),i.getMail_date().toString()
+					));
+			
+		}
+		
 		String tmp = null;
 		switch(this.textColorindex)// shapeindex 별로 출력
 		{
@@ -108,3 +124,4 @@ public class User implements MailBox {
 	
 
 }
+
