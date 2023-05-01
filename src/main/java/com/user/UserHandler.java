@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.dto.MailBoxDTO;
+import com.dto.MailDTO;
 import com.dto.UserDTO;
 import com.exception.RecordNotFoundException;
+import com.mail.Mail;
 import com.service.Service;
 import com.service.ServiceImpl;
 
@@ -141,6 +143,20 @@ public class UserHandler {
 		else {
 			System.out.println("회원탈퇴 취소합니다.");
 		}
+	}
+	
+	public void mailBoxDeco() {
+		//upDateBox();
+	}
+	
+	public int deleteMailChoice() {
+		Service service = new ServiceImpl();
+		List<MailDTO> list = service.findMail(user.getUser_no());
+		for(MailDTO l : list) {
+			System.out.println(l.getMail_no()+" \t "+l.getMail_title()+" \t "+l.getMail_contents());
+		}
+		int mail_no = scan.nextInt();
+		return mail_no;
 	}
 	
 }

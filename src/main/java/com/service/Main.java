@@ -69,12 +69,16 @@ public class Main {
 			switch (ch=scan.nextInt()) {
 			case 1:
 				// 우체통 꾸미기
+				user.mailBoxDeco();
 				break;
 			case 2:
 				// 조회한 메일 내용 보기
 				break;
 			case 3:
 				// 받은 메일 삭제하기
+				MailHandler mail = new MailHandler();
+				int mail_no = user.deleteMailChoice();
+				mail.deleteMail(mail_no);
 				break;
 			case 4:
 				ch = -1;
