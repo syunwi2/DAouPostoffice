@@ -145,26 +145,36 @@ public class UserHandler {
 		}
 	}
 	
-	//false 확인
 	public void mailBoxDeco() {
-		int textColor, shape=0;
+		int textColor;
+		int shape;
+		int i=0;
+		System.out.println("색상선택");
+		for (String c : MailBox.textColor) {
+			System.out.println(i+" \t "+c);
+			i++;
+		}
 		do {
-			System.out.println("색상선택");
-			for (String c : MailBox.textColor) {
-				System.out.println(c);
-			}
 			int colorCh = scan.nextInt();
-			textColor = colorCh;
-		} while(false);
-		do {
-			
-			System.out.println("모양선택");
-			for (String s : MailBox.shape) {
-				System.out.println(s);
+			if (colorCh<MailBox.textColor.length) {				
+				textColor = colorCh;
+				break;
 			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
+		int j=0;
+		System.out.println("모양선택");
+		for (String s : MailBox.shape) {
+			System.out.println(j+" \t "+s);
+		}
+		do {
 			int shapeCh = scan.nextInt();
-			shape = shapeCh;
-		} while(false);
+			if (shapeCh<MailBox.shape.length) {				
+				shape = shapeCh;
+				break;
+			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
 		System.out.println("메일박스 수정 원할 시 0번 입력 // 뒤로 돌아가기 1번 입력");
 		int ch = scan.nextInt();
 		if (ch==0) {
@@ -206,7 +216,6 @@ public class UserHandler {
 			}
 			System.out.println("번호를 다시 확인해 주세요");
 		} while(true);
-		return mail_no;
 	}
 	
 }
