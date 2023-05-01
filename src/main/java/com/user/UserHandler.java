@@ -146,7 +146,29 @@ public class UserHandler {
 	}
 	
 	public void mailBoxDeco() {
-		//upDateBox();
+		int textColor, shape=0;
+		do {
+			System.out.println("색상선택");
+			for (String[] c : textColor) {
+				System.out.println(c);
+			}
+			int colorCh = scan.nextInt();
+			textColor = colorCh;
+		} while(false);
+		do {
+			
+			System.out.println("모양선택");
+			for (String[] s : shape) {
+				System.out.println(s);
+			}
+			int shapeCh = scan.nextInt();
+			shape = shapeCh;
+		} while(false);
+		System.out.println("메일박스 수정 원할 시 0번 입력 // 뒤로 돌아가기 1번 입력");
+		int ch = scan.nextInt();
+		if (ch==0) {
+			user.upDateBox(textColor, shape);			
+		} 
 	}
 	
 	public int deleteMailChoice() {
@@ -155,6 +177,7 @@ public class UserHandler {
 		for(MailDTO l : list) {
 			System.out.println(l.getMail_no()+" \t "+l.getMail_title()+" \t "+l.getMail_contents());
 		}
+		System.out.println("삭제할 메일번호 입력");
 		int mail_no = scan.nextInt();
 		return mail_no;
 	}
