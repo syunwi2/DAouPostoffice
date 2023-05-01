@@ -145,11 +145,12 @@ public class UserHandler {
 		}
 	}
 	
+	//false 확인
 	public void mailBoxDeco() {
 		int textColor, shape=0;
 		do {
 			System.out.println("색상선택");
-			for (String[] c : textColor) {
+			for (String c : MailBox.textColor) {
 				System.out.println(c);
 			}
 			int colorCh = scan.nextInt();
@@ -158,7 +159,7 @@ public class UserHandler {
 		do {
 			
 			System.out.println("모양선택");
-			for (String[] s : shape) {
+			for (String s : MailBox.shape) {
 				System.out.println(s);
 			}
 			int shapeCh = scan.nextInt();
@@ -171,6 +172,24 @@ public class UserHandler {
 		} 
 	}
 	
+	public int selectMailChoice() {
+		Service service = new ServiceImpl();
+		List<MailDTO> list = service.findMail(user.getUser_no());
+		for(MailDTO l : list) {
+			System.out.println(l.getMail_no()+" \t "+l.getMail_title()+" \t "+l.getMail_contents());
+		}
+		System.out.println("확인할 메일번호 입력");
+		do {
+			int mail_no = scan.nextInt();
+			for(MailDTO l : list) {
+				if(mail_no==l.getMail_no()) {
+					return mail_no;
+				}
+			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
+	}
+	
 	public int deleteMailChoice() {
 		Service service = new ServiceImpl();
 		List<MailDTO> list = service.findMail(user.getUser_no());
@@ -178,7 +197,15 @@ public class UserHandler {
 			System.out.println(l.getMail_no()+" \t "+l.getMail_title()+" \t "+l.getMail_contents());
 		}
 		System.out.println("삭제할 메일번호 입력");
-		int mail_no = scan.nextInt();
+		do {
+			int mail_no = scan.nextInt();
+			for(MailDTO l : list) {
+				if(mail_no==l.getMail_no()) {
+					return mail_no;
+				}
+			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
 		return mail_no;
 	}
 	

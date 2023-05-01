@@ -60,7 +60,7 @@ public class Main {
 	
 	public static void checkMailBox(UserHandler user) {
 		Scanner scan = new Scanner(System.in);
-		
+		MailHandler mail = new MailHandler();
 		int ch=0;
 		do {
 			user.getUser().viewBox(); // 서버에서 메일 받아오기: 연준, 메일 리스트 뜨도록 수정 후 표준 입출력으로 읽을 메일 선택받기: 요한
@@ -73,10 +73,11 @@ public class Main {
 				break;
 			case 2:
 				// 조회한 메일 내용 보기
+				user.selectMailChoice();
+				
 				break;
 			case 3:
 				// 받은 메일 삭제하기
-				MailHandler mail = new MailHandler();
 				int mail_no = user.deleteMailChoice();
 				mail.deleteMail(mail_no);
 				break;
