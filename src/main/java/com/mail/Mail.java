@@ -93,7 +93,7 @@ public class Mail implements MailVisual {
 				visual_dto.setMail_mail_no(mail_dto.getMail_no());
 				n = serviceimpl.insertMailVisual(visual_dto);
 			}catch(Exception e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 			} finally {
 				System.out.println(" 💜 " + n + "개의 편지가 발송되었습니다. 💜 ");
 			}

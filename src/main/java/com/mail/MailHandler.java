@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.dto.MailDTO;
 import com.dto.UserDTO;
+import com.service.Service;
 import com.service.ServiceImpl;
 
 
@@ -26,6 +27,7 @@ public void sendMail(String user_id) {
 	int textcolor = 0;
 	int backgroundcolor = 0;
 	int bannerindex = 0;
+	String receiver;
 
 	do {
 	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
@@ -63,10 +65,14 @@ public void sendMail(String user_id) {
 	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.println();
 	
-	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
-	System.out.println("✉ 수신자 아이디를 입력하세요                                                        ✉");
-	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉ \n");
-	String receiver = scan.nextLine();
+	Service service = new ServiceImpl();
+	do {
+		System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
+		System.out.println("✉ 수신자 아이디를 정확하게 입력하세요                                                        ✉");
+		System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉ \n");
+		receiver = scan.nextLine();
+	} while(service.isIDused(receiver) == null);
+	
 	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.println();
 	
@@ -119,7 +125,6 @@ public void sendMail(String user_id) {
 	    String mailtime = null;
 	    do {
 	    	mailtime = scan.nextLine();
-	    	System.out.println(mailtime);
 	    } while (mail.checkDateFormat(mailtime));
 
 	    System.out.println("︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵ \n");    
@@ -153,7 +158,7 @@ public void sendMail(String user_id) {
 	    	}while(!(n == 1 || n ==  2));
 	    
 	    if(n == 1) {
-	    mail.send();
+	    	mail.send();
 	    }else {
 
 	    	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖메일을 다시 작성합니다.˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖");
@@ -164,16 +169,20 @@ public void sendMail(String user_id) {
 	    
 	}
 
-public void view_mail_writing(Mail mail) {
-	String exit = "\u001B[0m";
-	System.out.println("<수신자 " + mail.getReceiver()+ ">");
-	System.out.println(mail.BANNER[mail.getBannerindex()]);
-	System.out.println(mail.BACKGROUDCOLOR[mail.getBackgroundColorindex()]+mail.TEXTCOLOR[mail.getTextColorindex()]+mail.getContent()+exit);
-	}
+	public void view_mail_writing(Mail mail) {
+		String exit = "\u001B[0m";
+		System.out.println("<수신자 " + mail.getReceiver()+ ">");
+		System.out.println(mail.BANNER[mail.getBannerindex()]);
+		System.out.println(mail.BACKGROUDCOLOR[mail.getBackgroundColorindex()]+mail.TEXTCOLOR[mail.getTextColorindex()]+mail.getContent()+exit);
+		}
 
 	
 
 	public void deleteMail(Mail mail) {
+		if (mail == null) {
+			return;
+		}
+		
 		int mail_no = mail.getMail_no();
 		ServiceImpl serviceimpl = new ServiceImpl();
 	    MailDTO dto = serviceimpl.findMailByMailNo(mail_no);
@@ -194,6 +203,10 @@ public void view_mail_writing(Mail mail) {
 	}
 	
 	public void viewMail(Mail mail) {
+		if (mail == null) {
+			return;
+		}
+		
 		this.mail = mail;
 		mail.view();
 	}

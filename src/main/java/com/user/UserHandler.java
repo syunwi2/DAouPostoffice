@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 public class UserHandler {
 	
 	User user = new User();
-	UserDTO dto = new UserDTO();
 	Scanner scan = new Scanner(System.in);
 	
 	//sign up
@@ -42,8 +41,11 @@ public class UserHandler {
 			//유저테이블 행 추가
 			String idPut, pwPut, pwPut2;
 			do {
-				System.out.println("아이디를 입력해 주세요. ");
+				System.out.println("아이디를 입력해 주세요(Q: 회원 가입 그만 두기). ");
 				idPut = scan.next();
+				if (idPut.equals("Q")) {
+					return;
+				}
 				
 				Service service = new ServiceImpl();
 				UserDTO tdoi = service.isIDused(idPut);
@@ -55,10 +57,18 @@ public class UserHandler {
 			} while(true);
 			
 			do {
-				System.out.println(" 비밀번호를 입력하시오. ");
+				System.out.println(" 비밀번호를 입력하시오(Q: 회원 가입 그만 두기). ");
 				pwPut = scan.next();
-				System.out.println(" 비밀번호를 한번 더 입력하시오. ");
+				if (pwPut.equals("Q")) {
+					return;
+				}
+				
+				System.out.println(" 비밀번호를 한번 더 입력하시오(Q: 회원 가입 그만 두기). ");
 				pwPut2 = scan.next();
+				if (pwPut2.equals("Q")) {
+					return;
+				}
+				
 				if (pwPut.equals(pwPut2)) {
 					System.out.println("비밀번호가 일치합니다.");
 				} else {
@@ -66,9 +76,11 @@ public class UserHandler {
 				}
 			} while(!pwPut.equals(pwPut2));
 			
-			System.out.println(" 이름을 입력하시오. ");
+			System.out.println(" 이름을 입력하시오(Q: 회원 가입 그만 두기). ");
 			String namePut = scan.next();
-			System.out.println(idPut+"\t"+namePut);
+			if (namePut.equals("Q")) {
+				return;
+			}
 			
 			UserDTO dto = new UserDTO(0, idPut, pwPut, namePut);
 			Service service = new ServiceImpl();
@@ -80,17 +92,25 @@ public class UserHandler {
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
-	}
-	//login in
+	} //login in
+	
 	public void login() {
+		UserDTO dto = new UserDTO();
+		
 		System.out.println(" login");
 		System.out.println(" ======================== ");
 		
-		System.out.print("아이디를 입력하세요 : ");
+		System.out.print("아이디를 입력하세요(Q: 로그인 그만 두기). : ");
         dto.setUser_id(scan.next());
+        if (dto.getUser_id().equals("Q")) {
+        	return;
+        }
         
-        System.out.print("비밀번호를 입력하세요 : ");
+        System.out.print("비밀번호를 입력하세요(Q: 로그인 그만 두기). : ");
         dto.setUser_passwd(scan.next());
+        if (dto.getUser_passwd().equals("Q")) {
+        	return;
+        }
         
         Service service = new ServiceImpl();
         dto = service.findUser(dto);
@@ -104,25 +124,28 @@ public class UserHandler {
         	System.out.println("로그인에 성공하였습니다.");
         	
         	user.getBox();
+        	
+        	Main.afterLogin(this);
         }
         else {
         	System.out.println("입력한 로그인 정보가 올바르지 않습니다.");
-        	Main.beforeLogin();
+        	return;
         }
         
-	}
-	//logout
+	} //logout
+	
 	public void logout() {
 		// 로그인이 되지 않으면 로그아웃 선택지는 없음
 		// 로그아웃을 하면 메인페이지 이동
-		User user = null;
-		UserDTO dto = null;
+		user = null;
+
 		System.out.println("로그아웃");
 		
 	}
 
 	//회원탈퇴
 	public void withdrawal() {
+		System.out.println(user);
 		System.out.println("회원탈퇴 시작");
 		System.out.println("정말 탈퇴하시겠습니까? 탈퇴하시려면 1번을 눌러주세요. ");
 		System.out.println("다른키를 누르면 메인화면으로 돌아갑니다. ");
@@ -192,13 +215,20 @@ public class UserHandler {
 	
 	public Mail selectMailChoice() {
 		Hashtable<Integer, Mail> ht = user.getReceiveMails();
+		if (ht.isEmpty()) {
+			System.out.println("우편함이 비었습니다.");
+			return null;
+		}
 
 		for (Integer key: ht.keySet()) {
             System.out.println(key+" \t "+ht.get(key).getTitle());
         }
 		do {
-			System.out.println("확인할 메일번호 입력");
+			System.out.print("확인할 메일번호 입력(-1: 메일 확인 종료) : ");
 			int mail_no = scan.nextInt();
+			if(mail_no == -1) {
+				return null;
+			}
 			if(ht.containsKey(mail_no)) {
 				return ht.get(mail_no);
 			}
@@ -208,13 +238,20 @@ public class UserHandler {
 	
 	public Mail deleteMailChoice() {
 		Hashtable<Integer, Mail> ht = user.getReceiveMails();
+		if (ht.isEmpty()) {
+			System.out.println("우편함이 비었습니다.");
+			return null;
+		}
 		
 		for (Integer key: ht.keySet()) {
             System.out.println(key+" \t "+ht.get(key).getTitle());
         }
 		do {
-			System.out.println("삭제할 메일번호 입력");
+			System.out.print("삭제할 메일번호 입력(-1: 메일 삭제 종료) : ");
 			int mail_no = scan.nextInt();
+			if(mail_no == -1) {
+				return null;
+			}
 			if(ht.containsKey(mail_no)) {
 				return ht.get(mail_no);
 			}

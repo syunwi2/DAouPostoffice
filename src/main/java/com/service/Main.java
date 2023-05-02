@@ -42,7 +42,7 @@ public class Main {
 		do {
 			while(true) {
 				System.out.println("choice pz");
-				System.out.println("1: sign === 2: login === ");
+				System.out.println("1: sign === 2: login === 3: exit");
 				str = scan.next();
 				if (Pattern.matches("^[0-9]*$", str)) {
 					ch = Integer.parseInt(str);
@@ -56,15 +56,15 @@ public class Main {
 				break;
 			case 2:
 				user.login();
-				ch = -1;
 				break;
+			case 3:
+				System.out.println("프로그램을 종료합니다.");
+				System.exit(0);
 			default:
 				System.out.println("형식에 맞게 입력해주세요.");
 				break;
 			}
-		} while(ch != -1);
-				
-		afterLogin(user);
+		} while(true);
 	} // beforeLogin
 
 	public static void afterLogin(UserHandler user) {
