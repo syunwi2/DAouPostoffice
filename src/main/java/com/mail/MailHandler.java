@@ -164,16 +164,20 @@ public void sendMail(String user_id) {
 	    
 	}
 
-public void view_mail_writing(Mail mail) {
-	String exit = "\u001B[0m";
-	System.out.println("<수신자 " + mail.getReceiver()+ ">");
-	System.out.println(mail.BANNER[mail.getBannerindex()]);
-	System.out.println(mail.BACKGROUDCOLOR[mail.getBackgroundColorindex()]+mail.TEXTCOLOR[mail.getTextColorindex()]+mail.getContent()+exit);
-	}
+	public void view_mail_writing(Mail mail) {
+		String exit = "\u001B[0m";
+		System.out.println("<수신자 " + mail.getReceiver()+ ">");
+		System.out.println(mail.BANNER[mail.getBannerindex()]);
+		System.out.println(mail.BACKGROUDCOLOR[mail.getBackgroundColorindex()]+mail.TEXTCOLOR[mail.getTextColorindex()]+mail.getContent()+exit);
+		}
 
 	
 
 	public void deleteMail(Mail mail) {
+		if (mail == null) {
+			return;
+		}
+		
 		int mail_no = mail.getMail_no();
 		ServiceImpl serviceimpl = new ServiceImpl();
 	    MailDTO dto = serviceimpl.findMailByMailNo(mail_no);
@@ -194,6 +198,10 @@ public void view_mail_writing(Mail mail) {
 	}
 	
 	public void viewMail(Mail mail) {
+		if (mail == null) {
+			return;
+		}
+		
 		this.mail = mail;
 		mail.view();
 	}
