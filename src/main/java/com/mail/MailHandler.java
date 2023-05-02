@@ -101,6 +101,7 @@ public void sendMail(String user_id) {
     }
   
     System.out.println("︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵");    
+
 	    System.out.println("익명을 원하시면 0, 기명을 원하시면 1을 눌러주세요");
 	    String anoy = scan.nextLine();
 	    do {
@@ -109,17 +110,15 @@ public void sendMail(String user_id) {
 	            anoy = scan.nextLine();
 	        }
 	    } while (!anoy.equals("0") && !anoy.equals("1"));
-
+	
 	    System.out.println("상대방이 편지를 읽을 수 있는 시간을 설정해주세요 (yyyymmdd)");
 	    String mailtime = null;
 	    do {
-	    	{
-	            mailtime = scan.nextLine();
-	        }
+	    	mailtime = scan.nextLine();
+	    	System.out.println(mailtime);
 	    } while (mail.checkDateFormat(mailtime));
 
 	    System.out.println("︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵ \n");    
-	    
 	    
 	    //mail 멤버변수 설정
 	    mail.setBackgroundColorindex(backgroundcolor);
@@ -150,6 +149,7 @@ public void sendMail(String user_id) {
 	    	sendMail(user_id);
 	    }
 	    
+
 	    
 	}
 
@@ -162,11 +162,11 @@ public void view_mail_writing(Mail mail) {
 
 	
 
-public void deleteMail(int mail_no) {	
-	ServiceImpl serviceimpl = new ServiceImpl();
-	    MailDTO mail = serviceimpl.findMailByMailNo(mail_no);
-	    System.out.println(mail);
-	    if (mail == null) {
+	public void deleteMail(Mail mail) {
+		int mail_no = mail.getMail_no();
+		ServiceImpl serviceimpl = new ServiceImpl();
+	    MailDTO dto = serviceimpl.findMailByMailNo(mail_no);
+	    if (dto == null) {
 	        System.out.println(" 메일이 존재하지 않습니다.");
 	        return;
 	    }
@@ -175,11 +175,17 @@ public void deleteMail(int mail_no) {
 	    try {
 	    	n = serviceimpl.deleteMail(mail_no);
 	    } catch (Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} finally {
 	    	System.out.println(n + "개 메일이 삭제되었습니다.");
 	    }
-			
+				
+	}
+	
+	public void viewMail(Mail mail) {
+		this.mail = mail;
+		mail.view();
 	}
 	
 }
+
