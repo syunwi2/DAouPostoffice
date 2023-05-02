@@ -102,7 +102,7 @@ public class Mail  implements MailVisual {
 			}catch(Exception e) {
 				e.getMessage();
 			} finally {
-				System.out.println(n + "개의 편지가 발송되었습니다.");
+				System.out.println(" 💜 " + n + "개의 편지가 발송되었습니다. 💜 ");
 			}
 	}
 	public boolean checkDateFormat(String date) {
