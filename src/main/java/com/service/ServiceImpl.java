@@ -155,7 +155,7 @@ public class ServiceImpl implements Service{
 		int n = 0;
 		try {
 			DAO dao = new DAO();
-			n = dao.deleteUser(session, user_user_no);
+			n = dao.deleteMailBox(session, user_user_no);
 			if (n == 0) {
 				throw new RecordNotFoundException("해당되는 레코드가 존재하지 않습니다.");
 			}
@@ -171,7 +171,7 @@ public class ServiceImpl implements Service{
 		int n = 0;
 		try {
 			DAO dao = new DAO();
-			n = dao.deleteUser(session, mail_no);
+			n = dao.deleteMail(session, mail_no);
 			if (n == 0) {
 				throw new RecordNotFoundException("해당되는 레코드가 존재하지 않습니다.");
 			}
@@ -187,7 +187,7 @@ public class ServiceImpl implements Service{
 		int n = 0;
 		try {
 			DAO dao = new DAO();
-			n = dao.deleteUser(session, mail_mail_no);
+			n = dao.deleteMailVisual(session, mail_mail_no);
 			if (n == 0) {
 				throw new RecordNotFoundException("해당되는 레코드가 존재하지 않습니다.");
 			}

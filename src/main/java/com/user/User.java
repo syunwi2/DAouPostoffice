@@ -61,7 +61,6 @@ public class User implements MailBox {
 					i.getMail__anonymity(), m3.getUser_name(),m4.getUser_name(),
 					i.getMail_title(),i.getMail_contents(),i.getMail_date().toString()
 					));
-			System.out.println(receiveMails);
 			
 		}
 		
@@ -121,6 +120,7 @@ public class User implements MailBox {
 		Service service = new ServiceImpl();
 		try {
 			service.updateMailBox(box);
+			getBox();
 		} catch (RecordNotFoundException e) {
 			System.out.println(e.getMessage());
 		}

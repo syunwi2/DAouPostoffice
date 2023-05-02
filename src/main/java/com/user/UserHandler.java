@@ -11,6 +11,7 @@ import com.dto.MailDTO;
 import com.dto.UserDTO;
 import com.exception.RecordNotFoundException;
 import com.mail.Mail;
+import com.service.Main;
 import com.service.Service;
 import com.service.ServiceImpl;
 
@@ -93,17 +94,21 @@ public class UserHandler {
         
         Service service = new ServiceImpl();
         dto = service.findUser(dto);
-        System.out.println(dto);
+
         if (dto != null) {
         	user.setUser_no(dto.getUser_no());
         	user.setId(dto.getUser_id());
         	user.setPasswd(dto.getUser_passwd());
         	user.setName(dto.getUser_name());
-        	System.out.println(user);
+        	
         	System.out.println("로그인에 성공하였습니다.");
+        	
+        	user.getBox();
         }
-        
-        user.getBox();
+        else {
+        	System.out.println("입력한 로그인 정보가 올바르지 않습니다.");
+        	Main.beforeLogin();
+        }
         
 	}
 	//logout
@@ -113,13 +118,9 @@ public class UserHandler {
 		User user = null;
 		UserDTO dto = null;
 		System.out.println("로그아웃");
-		System.out.println(dto);
-	}
-	
-	//메일박스 업데이트
-	public void mailBoxUpdate() {
 		
 	}
+
 	//회원탈퇴
 	public void withdrawal() {
 		System.out.println("회원탈퇴 시작");
@@ -148,18 +149,21 @@ public class UserHandler {
 	}
 	
 	public void mailBoxDeco() {
+		String exit = "\u001B[0m";
 		int textColor;
 		int shape;
 		int i=0;
 		System.out.println("색상선택");
 		for (String c : MailBox.textColor) {
-			System.out.println(i+" \t "+c);
+			System.out.println(c + i + exit);
 			i++;
 		}
+		
 		do {
 			int colorCh = scan.nextInt();
 			if (colorCh<MailBox.textColor.length) {				
 				textColor = colorCh;
+				System.out.println(exit);
 				break;
 			}
 			System.out.println("번호를 다시 확인해 주세요");
@@ -168,11 +172,13 @@ public class UserHandler {
 		System.out.println("모양선택");
 		for (String s : MailBox.shape) {
 			System.out.println(j+" \t "+s);
+			j++;
 		}
 		do {
 			int shapeCh = scan.nextInt();
 			if (shapeCh<MailBox.shape.length) {				
 				shape = shapeCh;
+				System.out.println(exit);
 				break;
 			}
 			System.out.println("번호를 다시 확인해 주세요");
@@ -190,7 +196,6 @@ public class UserHandler {
 		for (Integer key: ht.keySet()) {
             System.out.println(key+" \t "+ht.get(key).getTitle());
         }
-		
 		do {
 			System.out.println("확인할 메일번호 입력");
 			int mail_no = scan.nextInt();
@@ -207,7 +212,6 @@ public class UserHandler {
 		for (Integer key: ht.keySet()) {
             System.out.println(key+" \t "+ht.get(key).getTitle());
         }
-		
 		do {
 			System.out.println("삭제할 메일번호 입력");
 			int mail_no = scan.nextInt();
