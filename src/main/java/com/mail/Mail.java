@@ -95,7 +95,7 @@ public class Mail  implements MailVisual {
 			int n = 0;
 			try{
 				n = serviceimpl.insertMail(mail_dto);
-				visual_dto.setMail_mail_no(mail_dto.getMail_no()); // check
+				visual_dto.setMail_mail_no(mail_dto.getMail_no());
 				n = serviceimpl.insertMailVisual(visual_dto);
 			}catch(Exception e) {
 				e.getMessage();
