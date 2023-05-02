@@ -1,6 +1,5 @@
 package com.service;
-import com.mail.*;
-import com.user.*;
+import com.mail.MailHandler;
 public class Main {
 
 	public static void main(String[] args) {
