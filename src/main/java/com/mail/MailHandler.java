@@ -15,6 +15,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MailHandler {
+	
+private Mail mail;
+
+public void sendMail(String user_id) {	
 	Mail mail = new Mail();
 	Scanner scan = new Scanner(System.in);
 	
