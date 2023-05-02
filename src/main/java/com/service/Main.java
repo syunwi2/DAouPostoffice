@@ -87,7 +87,7 @@ public class Main {
 	public static void checkMailBox(UserHandler user) {
 		user.getUser().viewBox(); // 서버에서 메일 받아오기: 연준, 메일 리스트 뜨도록 수정 후 표준 입출력으로 읽을 메일 선택받기: 요한
 		Scanner scan = new Scanner(System.in);
-		
+		MailHandler mail = new MailHandler();
 		int ch=0;
 		String str;
 		do {
@@ -104,12 +104,17 @@ public class Main {
 			switch (ch) {
 			case 1:
 				// 우체통 꾸미기
+				user.mailBoxDeco();
 				break;
 			case 2:
 				// 조회한 메일 내용 보기
+				user.selectMailChoice();
+				
 				break;
 			case 3:
 				// 받은 메일 삭제하기
+				int mail_no = user.deleteMailChoice();
+				mail.deleteMail(mail_no);
 				break;
 			case 4:
 				ch = -1;
