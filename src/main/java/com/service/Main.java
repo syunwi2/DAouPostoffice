@@ -3,9 +3,8 @@ package com.service;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import com.mail.Mail;
-import com.mail.MailHandler;
-import com.user.UserHandler;
+import com.mail.*;
+import com.user.*;
 
 public class Main {
 	
@@ -15,31 +14,6 @@ public class Main {
 		
 		int ch=0;
 		String str;
-		System.out.println("\r\n"
-				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣤⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡶⠖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣹⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿"+Mail.TEXTCOLOR[3]+"⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠤ "+Mail.TEXTCOLOR[7]+" ⣀⣤⣤⡤ ⢀⣠⣤⡤⠄⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8] 
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⡟⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠁⠀"+Mail.TEXTCOLOR[3]+"⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠉"+Mail.TEXTCOLOR[7]+"⣤⣶⡿⠟⢋⣡⣴⡾⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋"+Mail.TEXTCOLOR[7]+"⣠⣴⡿⠟⢋⣡⣴⡾⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⡿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⣸⣿⣿⣿⣿⣿⡿⠟⠋"+Mail.TEXTCOLOR[7]+"⣠⣴⣾⠟⠋⣡⣴⣾⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠉⠻⢿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀"+Mail.TEXTCOLOR[7]+"⠛⢿⣷⣦⣈⠙⠿⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠉⠟⢿⣿⣿⣿⣿⠁⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀"+Mail.TEXTCOLOR[7]+"⠛⢿⣷⣦⣈⠙⠿⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⢿⡟⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀"+Mail.TEXTCOLOR[3]+"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣀"+Mail.TEXTCOLOR[7]+"⠙⢿⣷⣦⣀⠙⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣍"+Mail.TEXTCOLOR[3]+"⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀ "+Mail.TEXTCOLOR[7]+"⠈⠉⠉⠁⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⢀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠉⠙⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠒⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
-				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-	+Mail.TEXTCOLOR[4]	+ "⠀⠀⠀⠀⠀⠀⢰⣿⠿⠿⣿⡄⠀⠀⣾⣿⡄⠀⠀⣴⡾⠿⢷⣆  ⣿⡇⠀ ⢸⣿⠀⠀⠀⣿⡿⠿⣶⡆⢠⣶⠿⠿⣶⡄⢀⣶⠿⠿⣶⡀⠸⠿⣿⡿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-	+Mail.TEXTCOLOR[6]	+ "⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⣿⡇⠀⣸⡟ ⣿⡄⢸⣿⠀⠀ ⢸⣿⠀⣿⡇⠀ ⢸⣿⠀⠀⠀⣿⣧⣤⣾⠇⢼⡏⠀⠀⢸⣿⠈⠻⠷⣶⣦⡀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-	+Mail.TEXTCOLOR[7]	+ "⠀⠀⠀⠀⠀⠀⢸⣿⣤⣤⣿⠃⢠⣿⠛⠛⢿⣇⠈⢿⣦⣤⣾⠟⠀ ⢻⣷⣤⣼⡟⠀⠀⠀⣿⣿⠀⠀⠀⠘⢿⣤⣤⣾⠏⠐⣿⣤⣤⣿⠇⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
-				+ "");
 		do {
 			while(true) {
 				System.out.println("choice pz");
@@ -111,13 +85,14 @@ public class Main {
 	} // afterLogin
 	
 	public static void checkMailBox(UserHandler user) {
-		user.getUser().viewBox(); // 서버에서 메일 받아오기: 연준, 메일 리스트 뜨도록 수정 후 표준 입출력으로 읽을 메일 선택받기: 요한
+		// 서버에서 메일 받아오기: 연준, 메일 리스트 뜨도록 수정 후 표준 입출력으로 읽을 메일 선택받기: 요한
 		Scanner scan = new Scanner(System.in);
 		MailHandler mail = new MailHandler();
 		int ch=0;
 		String str;
 		do {
 			while(true) {
+				user.getUser().viewBox();
 				System.out.println("choice pz");
 				System.out.println("1: update my Mailbox === 2: read Mail === 3: delete Mail === 4: return to main menu");
 				str = scan.next();
@@ -134,14 +109,11 @@ public class Main {
 				break;
 			case 2:
 				// 조회한 메일 내용 보기
-				Mail mail_view =new Mail();
-				int mail_no_select = user.selectMailChoice();
-				mail_view.view(mail_no_select);
+				mail.viewMail(user.selectMailChoice());
 				break;
 			case 3:
 				// 받은 메일 삭제하기
-				int mail_no = user.deleteMailChoice();
-				mail.deleteMail(mail_no);
+				mail.deleteMail(user.deleteMailChoice());
 				break;
 			case 4:
 				ch = -1;

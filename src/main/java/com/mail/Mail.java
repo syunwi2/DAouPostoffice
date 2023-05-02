@@ -16,7 +16,7 @@ import com.exception.OutofDateException;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Mail  implements MailVisual {
+public class Mail implements MailVisual {
 	int mail_no;
 	int textColorindex;
 	int backgroundColorindex;
@@ -55,18 +55,15 @@ public class Mail  implements MailVisual {
 	        return d;
 	    }
 	
- 	
  	//파라미터 변경 -> mail_no 자리에 요한님이 받아준 거 넣을 예정
-	public void view(int mail_no) {//파라미터로 db에 저장된 거 가져오기
+	public void view() {//파라미터로 db에 저장된 거 가져오기
 		
-		ServiceImpl serviceimpl = new ServiceImpl();
-		MailDTO mail_dto = serviceimpl.findMailByMailNo(mail_no);//함수 변경
-		MailVisualDTO visual_dto = serviceimpl.findMailVisual(mail_no);
-		
-		System.out.println("보낸 사람: ");//view박스로 함수 바꾸기
+		System.out.println("보낸 사람: "+ (mail_anonymity == 0? "익명의 작성자": sender));//view박스로 함수 바꾸기
 		String exit = "\u001B[0m";
-		System.out.printf(BANNER[visual_dto.getBanner()]);
-		System.out.println(BACKGROUDCOLOR[visual_dto.getBackground_color()]+TEXTCOLOR[visual_dto.getText_color()]+mail_dto.getMail_contents()+exit);}
+		System.out.printf(BANNER[bannerindex]);
+		System.out.println(BACKGROUDCOLOR[backgroundColorindex]+TEXTCOLOR[textColorindex]+content+exit);
+    }
+
 		
 	public void send() {
 			MailDTO mail_dto = new MailDTO();
@@ -89,8 +86,6 @@ public class Mail  implements MailVisual {
 			visual_dto.setText_color(this.textColorindex);
 			visual_dto.setBackground_color(this.backgroundColorindex);
 			visual_dto.setBanner(this.bannerindex);
-			
-			
 			
 			int n = 0;
 			try{
@@ -127,7 +122,7 @@ public class Mail  implements MailVisual {
     }
 		
 		 
-	}
+}
 
 	
 	
