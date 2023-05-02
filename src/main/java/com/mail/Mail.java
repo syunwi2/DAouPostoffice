@@ -66,39 +66,37 @@ public class Mail implements MailVisual {
 
 		
 	public void send() {
-		MailDTO mail_dto = new MailDTO();
-		MailVisualDTO visual_dto = new MailVisualDTO();
-		ServiceImpl serviceimpl = new ServiceImpl();
-		//receiver_no랑 sender_no는 user 클래스 구현하는 거 보고 바뀔 수 있당!
-		//userdto에서 가져오는걸로 바꾸기
-		int receiver_no = serviceimpl.isIDused(this.receiver).getUser_no();
-		int sender_no = serviceimpl.isIDused(this.sender).getUser_no();
-		Date date = this.transformDate(this.openDate);
-		
-		mail_dto.setMail_no(-1);
-		mail_dto.setMail_contents(this.content);
-		mail_dto.setMail_date(date);
-		mail_dto.setMail__anonymity(this.mail_anonymity);
-		mail_dto.setMail_title(this.title);
-		mail_dto.setReceive_user_no(receiver_no);
-		mail_dto.setSend_user_no(sender_no);
-		
-		visual_dto.setText_color(this.textColorindex);
-		visual_dto.setBackground_color(this.backgroundColorindex);
-		visual_dto.setBanner(this.bannerindex);
-		
-		
-		int n = 0;
-		try{
-			n = serviceimpl.insertMail(mail_dto);
-			visual_dto.setMail_mail_no(mail_dto.getMail_no());
-			n = serviceimpl.insertMailVisual(visual_dto);
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			System.out.println(n + "개의 편지가 발송되었습니다.");
-		}
-
+			MailDTO mail_dto = new MailDTO();
+			MailVisualDTO visual_dto = new MailVisualDTO();
+			ServiceImpl serviceimpl = new ServiceImpl();
+			//receiver_no랑 sender_no는 user 클래스 구현하는 거 보고 바뀔 수 있당!
+			//userdto에서 가져오는걸로 바꾸기
+			int receiver_no = serviceimpl.isIDused(this.receiver).getUser_no();
+			int sender_no = serviceimpl.isIDused(this.sender).getUser_no();
+			Date date = this.transformDate(this.openDate);
+			
+			mail_dto.setMail_no(-1);
+			mail_dto.setMail_contents(this.content);
+			mail_dto.setMail_date(date);
+			mail_dto.setMail__anonymity(this.mail_anonymity);
+			mail_dto.setMail_title(this.title);
+			mail_dto.setReceive_user_no(receiver_no);
+			mail_dto.setSend_user_no(sender_no);
+			
+			visual_dto.setText_color(this.textColorindex);
+			visual_dto.setBackground_color(this.backgroundColorindex);
+			visual_dto.setBanner(this.bannerindex);
+			
+			int n = 0;
+			try{
+				n = serviceimpl.insertMail(mail_dto);
+				visual_dto.setMail_mail_no(mail_dto.getMail_no());
+				n = serviceimpl.insertMailVisual(visual_dto);
+			}catch(Exception e) {
+				e.getMessage();
+			} finally {
+				System.out.println(" 💜 " + n + "개의 편지가 발송되었습니다. 💜 ");
+			}
 	}
 	public boolean checkDateFormat(String date) {
     	boolean flag = false;
