@@ -92,8 +92,6 @@ public class Mail  implements MailVisual {
 			visual_dto.setBackground_color(this.backgroundColorindex);
 			visual_dto.setBanner(this.bannerindex);
 			
-			
-			
 			int n = 0;
 			try{
 				n = serviceimpl.insertMail(mail_dto);
