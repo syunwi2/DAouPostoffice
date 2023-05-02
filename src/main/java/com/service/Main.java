@@ -3,8 +3,9 @@ package com.service;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import com.mail.*;
-import com.user.*;
+import com.mail.Mail;
+import com.mail.MailHandler;
+import com.user.UserHandler;
 
 public class Main {
 	
@@ -14,6 +15,31 @@ public class Main {
 		
 		int ch=0;
 		String str;
+		System.out.println("\r\n"
+				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⢀⣤⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡶⠖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣹⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿"+Mail.TEXTCOLOR[3]+"⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⠤ "+Mail.TEXTCOLOR[7]+" ⣀⣤⣤⡤ ⢀⣠⣤⡤⠄⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8] 
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⡟⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠁⠀"+Mail.TEXTCOLOR[3]+"⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠉"+Mail.TEXTCOLOR[7]+"⣤⣶⡿⠟⢋⣡⣴⡾⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠈⠙⠿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋"+Mail.TEXTCOLOR[7]+"⣠⣴⡿⠟⢋⣡⣴⡾⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⡿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⣸⣿⣿⣿⣿⣿⡿⠟⠋"+Mail.TEXTCOLOR[7]+"⣠⣴⣾⠟⠋⣡⣴⣾⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠉⠻⢿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀"+Mail.TEXTCOLOR[7]+"⠛⢿⣷⣦⣈⠙⠿⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠉⠟⢿⣿⣿⣿⣿⠁⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀"+Mail.TEXTCOLOR[3]+"⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀"+Mail.TEXTCOLOR[7]+"⠛⢿⣷⣦⣈⠙⠿⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⢿⡟⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀"+Mail.TEXTCOLOR[3]+"⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣀"+Mail.TEXTCOLOR[7]+"⠙⢿⣷⣦⣀⠙⠻⣿⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣍"+Mail.TEXTCOLOR[3]+"⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀ "+Mail.TEXTCOLOR[7]+"⠈⠉⠉⠁⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⢀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+	+Mail.TEXTCOLOR[1]	+ "⠀⠀⠀⠀⠀⠉⠙⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠒⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" +Mail.TEXTCOLOR[8]
+				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+	+Mail.TEXTCOLOR[4]	+ "⠀⠀⠀⠀⠀⠀⢰⣿⠿⠿⣿⡄⠀⠀⣾⣿⡄⠀⠀⣴⡾⠿⢷⣆  ⣿⡇⠀ ⢸⣿⠀⠀⠀⣿⡿⠿⣶⡆⢠⣶⠿⠿⣶⡄⢀⣶⠿⠿⣶⡀⠸⠿⣿⡿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+	+Mail.TEXTCOLOR[6]	+ "⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⣿⡇⠀⣸⡟ ⣿⡄⢸⣿⠀⠀ ⢸⣿⠀⣿⡇⠀ ⢸⣿⠀⠀⠀⣿⣧⣤⣾⠇⢼⡏⠀⠀⢸⣿⠈⠻⠷⣶⣦⡀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+	+Mail.TEXTCOLOR[7]	+ "⠀⠀⠀⠀⠀⠀⢸⣿⣤⣤⣿⠃⢠⣿⠛⠛⢿⣇⠈⢿⣦⣤⣾⠟⠀ ⢻⣷⣤⣼⡟⠀⠀⠀⣿⣿⠀⠀⠀⠘⢿⣤⣤⣾⠏⠐⣿⣤⣤⣿⠇⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+				+ "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+				+ "");
 		do {
 			while(true) {
 				System.out.println("choice pz");
@@ -108,8 +134,9 @@ public class Main {
 				break;
 			case 2:
 				// 조회한 메일 내용 보기
-				user.selectMailChoice();
-				
+				Mail mail_view =new Mail();
+				int mail_no_select = user.selectMailChoice();
+				mail_view.view(mail_no_select);
 				break;
 			case 3:
 				// 받은 메일 삭제하기

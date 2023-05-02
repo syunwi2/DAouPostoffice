@@ -21,39 +21,46 @@ public void sendMail(String user_id) {
 	 */
 	
 	//입력받는 부분 : textcolor, backgroundcolor, reciever, title
-	System.out.println("글자색을 입력하세요");
-	System.out.println("(0: black, 1: red, 2: green, 3: yellow, 4: blue, 5: purple, 6: cyan, 7: white");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
+	System.out.println("✉ 글자색을 입력하세요                                                               ✉");
+	System.out.println("✉ 0: black, 1: red, 2: green, 3: yellow, 4: blue, 5: purple, 6: cyan, 7: white✉");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉ \n");
 	int textcolor = scan.nextInt();
 	scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
+	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.println();
 	
-	
-	System.out.println("글자의 배경색을 입력하세요");
-	System.out.println("(0: black, 1: red, 2: green, 3: yellow, 4: blue, 5: purple, 6: cyan, 7: white");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
+	System.out.println("✉ 글자의 배경색을 입력하세요                                                          ✉");
+	System.out.println("✉ 0: black, 1: red, 2: green, 3: yellow, 4: blue, 5: purple, 6: cyan, 7: white✉");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉ \n");
 	int backgroundcolor = scan.nextInt();
 	scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
+	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.println();
 
 	//배너 예시 어떻게 보여주징,,,?
-	System.out.println("배너를 선택하세요");
-	System.out.println("1: 풍선 2:선물 3: 축제 4: 꽃");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
+	System.out.println("✉ 배너를 선택하세요                                                                ✉");
+	System.out.println("✉ 1: 풍선 2:선물 3: 축제 4: 꽃                                                    ✉");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉ \n");
 	int bannerindex = scan.nextInt();
 	scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
+	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.println();
 	
-	System.out.println("수신자 아이디를 입력하세요");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
+	System.out.println("✉ 수신자 아이디를 입력하세요                                                          ✉");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉ \n");
 	String receiver = scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
+	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.println();
 	
-	
-	System.out.println("편지의 제목을 입력하세요 (100자 이내)");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
+	System.out.println("✉ 편지의 제목을 입력하세요 (100자 이내)                                                ✉");
+	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
 	String mailtitle = scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
-	
+	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.printf("글자수가 300자가 넘어가면 글자 입력은 종료되고 OOO올림을 입력하시면 입력이 종료됩니다.\n");
 	
 	String text = "";
@@ -83,7 +90,7 @@ public void sendMail(String user_id) {
         }
     }
   
-	    System.out.println("==============================================================");
+    	System.out.println("︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵");
 	    
 	    System.out.println("익명을 원하시면 0, 기명을 원하시면 1을 눌러주세요");
 	    String anoy = scan.nextLine();
@@ -101,7 +108,7 @@ public void sendMail(String user_id) {
 	            mailtime = scan.nextLine();
 	        }
 	    } while (mail.checkDateFormat(mailtime));
-	    
+	    System.out.println("︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵‿︵ \n");
 	    
 	    //mail 멤버변수 설정
 	    mail.setBackgroundColorindex(backgroundcolor);
