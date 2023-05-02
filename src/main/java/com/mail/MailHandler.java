@@ -7,12 +7,16 @@ import com.dto.MailDTO;
 import com.dto.UserDTO;
 import com.service.ServiceImpl;
 
+
+
 public class MailHandler {
-	
-public void sendMail(String user_id) {	
-	
+
 	Mail mail = new Mail();
 	Scanner scan = new Scanner(System.in);
+	
+	
+public void sendMail(String user_id) {	
+
 	
 	//mail.view();
 	
@@ -22,7 +26,7 @@ public void sendMail(String user_id) {
 	int textcolor = 0;
 	int backgroundcolor = 0;
 	int bannerindex = 0;
-	
+
 	do {
 	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
 	System.out.println("✉ 글자색을 입력하세요                                                               ✉");
@@ -131,6 +135,12 @@ public void sendMail(String user_id) {
 	    mail.setTextColorindex(textcolor);
 	    mail.setTitle(mailtitle);
 	    
+
+	    
+	    System.out.println("*.☆⸜(⑉˙ᗜ˙⑉)⸝♡.**.☆⸜(⑉˙ᗜ˙⑉)⸝♡.*작성한 메일 정보를 확인합니다.*.☆⸜(⑉˙ᗜ˙⑉)⸝♡.**.☆⸜(⑉˙ᗜ˙⑉)⸝♡.*");
+	    System.out.println();
+	    System.out.println();
+	    
 	    view_mail_writing(mail);
 	    
 	    System.out.println("메일을 발송하시겠습니까?");
@@ -145,7 +155,8 @@ public void sendMail(String user_id) {
 	    if(n == 1) {
 	    mail.send();
 	    }else {
-	    	System.out.println("메일을 다시 작성합니다.");
+
+	    	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖메일을 다시 작성합니다.˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖");
 	    	sendMail(user_id);
 	    }
 	    
