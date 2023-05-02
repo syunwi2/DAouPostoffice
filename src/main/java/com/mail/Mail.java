@@ -80,11 +80,14 @@ public class Mail implements MailVisual {
 	        return d;
 	    }
 	
+ 	//파라미터 변경 -> mail_no 자리에 요한님이 받아준 거 넣을 예정
 	public void view() {//파라미터로 db에 저장된 거 가져오기
-
+		
+		System.out.println("보낸 사람: "+ (mail_anonymity == 0? "익명의 작성자": sender));//view박스로 함수 바꾸기
 		String exit = "\u001B[0m";
-		System.out.printf(BANNER[this.bannerindex]);
-		System.out.println(BACKGROUDCOLOR[this.backgroundColorindex]+TEXTCOLOR[this.textColorindex]+this.content+exit);}
+		System.out.printf(BANNER[bannerindex]);
+		System.out.println(BACKGROUDCOLOR[backgroundColorindex]+TEXTCOLOR[textColorindex]+content+exit);
+    }
 		
 	public void send() {
 			MailDTO dto = new MailDTO();

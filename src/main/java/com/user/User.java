@@ -1,23 +1,27 @@
 package com.user;
+
 import com.mail.Mail;
-import com.dto.MailBoxDTO;
-import com.dto.MailDTO;
-import com.dto.MailVisualDTO;
+
+import com.dto.*;
+
 import com.exception.RecordNotFoundException;
+
 import com.service.Service;
 import com.service.ServiceImpl;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
-import com.dto.UserDTO;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class User implements MailBox {
 	public static final String exit     = "\u001B[0m";
 	int user_no;
@@ -26,7 +30,7 @@ public class User implements MailBox {
 	String name;
 	int textColorindex;
 	int shapeIndex;
-	List<Mail> receiveMails = new ArrayList<Mail>();
+	Hashtable<Integer, Mail> receiveMails = new Hashtable<>();
 	
 	public void getBox() {
 		MailBoxDTO box = new MailBoxDTO();
@@ -50,7 +54,9 @@ public class User implements MailBox {
 	
 			UserDTO m3 = service.findUserByUserNo(i.getSend_user_no());
 			UserDTO m4 = service.findUserByUserNo(i.getReceive_user_no());
-			receiveMails.add(new Mail(i.getMail_no(),m2.getText_color(),
+			
+			receiveMails.clear();
+			receiveMails.put(i.getMail_no(), new Mail(i.getMail_no(),m2.getText_color(),
 					m2.getBackground_color(),m2.getBanner(),
 					i.getMail__anonymity(), m3.getUser_name(),m4.getUser_name(),
 					i.getMail_title(),i.getMail_contents(),i.getMail_date().toString()
@@ -116,7 +122,7 @@ public class User implements MailBox {
 		try {
 			service.updateMailBox(box);
 		} catch (RecordNotFoundException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		
 	}

@@ -82,11 +82,11 @@ public void sendMail(String user_id) {
 	    mail.send();
 	}
 	
-
-public void deleteMail(int mail_no) {	
-	ServiceImpl serviceimpl = new ServiceImpl();
-	    List<MailDTO> mail = serviceimpl.findMail(mail_no);
-	    if (mail == null) {
+	public void deleteMail(Mail mail) {
+		int mail_no = mail.getMail_no();
+		ServiceImpl serviceimpl = new ServiceImpl();
+	    MailDTO dto = serviceimpl.findMailByMailNo(mail_no);
+	    if (dto == null) {
 	        System.out.println(" 메일이 존재하지 않습니다.");
 	        return;
 	    }
@@ -100,6 +100,11 @@ public void deleteMail(int mail_no) {
 	    	System.out.println(n + "개 메일이 삭제되었습니다.");
 	    }
 			
+	}
+	
+	public void viewMail(Mail mail) {
+		this.mail = mail;
+		mail.view();
 	}
 	
 }
