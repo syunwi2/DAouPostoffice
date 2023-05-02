@@ -62,11 +62,14 @@ public class Mail  implements MailVisual {
 		ServiceImpl serviceimpl = new ServiceImpl();
 		MailDTO mail_dto = serviceimpl.findMailByMailNo(mail_no);//함수 변경
 		MailVisualDTO visual_dto = serviceimpl.findMailVisual(mail_no);
+		String sender_name = serviceimpl.findUserByUserNo(serviceimpl.findMailByMailNo(mail_no).getReceive_user_no()).getUser_name();
 		
-		System.out.println("보낸 사람: ");//view박스로 함수 바꾸기
+	
+		System.out.println("보낸 사람: "+ (mail_dto.getMail__anonymity() == 0? "익명의 작성자": sender_name));//view박스로 함수 바꾸기
 		String exit = "\u001B[0m";
 		System.out.printf(BANNER[visual_dto.getBanner()]);
-		System.out.println(BACKGROUDCOLOR[visual_dto.getBackground_color()]+TEXTCOLOR[visual_dto.getText_color()]+mail_dto.getMail_contents()+exit);}
+		System.out.println(BACKGROUDCOLOR[visual_dto.getBackground_color()]+TEXTCOLOR[visual_dto.getText_color()]+mail_dto.getMail_contents()+exit);
+            }
 		
 	public void send() {
 		MailDTO mail_dto = new MailDTO();
@@ -97,10 +100,11 @@ public class Mail  implements MailVisual {
 			visual_dto.setMail_mail_no(mail_dto.getMail_no());
 			n = serviceimpl.insertMailVisual(visual_dto);
 		}catch(Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} finally {
 			System.out.println(n + "개의 편지가 발송되었습니다.");
 		}
+
 	}
 	public boolean checkDateFormat(String date) {
     	boolean flag = false;
@@ -126,7 +130,7 @@ public class Mail  implements MailVisual {
     }
 		
 		 
-	}
+}
 
 	
 	
