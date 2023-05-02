@@ -20,13 +20,14 @@ import com.dto.UserDTO;
 
 public class User implements MailBox {
 	public static final String exit     = "\u001B[0m";
-	int user_no = 14;
+	int user_no;
 	String id; // 더미값
 	String passwd;
 	String name;
 	int textColorindex;
 	int shapeIndex;
 	List<Mail> receiveMails = new ArrayList<Mail>();
+	
 	public void getBox() {
 		MailBoxDTO box = new MailBoxDTO();
 		Service service = new ServiceImpl();
@@ -43,10 +44,8 @@ public class User implements MailBox {
 		Service service = new ServiceImpl();
 		m = service.findMail(user_no);
 		
-		System.out.println(m);
 		for(MailDTO i : m) {
-			System.out.println(i.getReceive_user_no());
-			System.out.println(i.getSend_user_no());
+			
 			MailVisualDTO m2 = service.findMailVisual(i.getMail_no());
 	
 			UserDTO m3 = service.findUserByUserNo(i.getSend_user_no());
@@ -56,6 +55,7 @@ public class User implements MailBox {
 					i.getMail__anonymity(), m3.getUser_name(),m4.getUser_name(),
 					i.getMail_title(),i.getMail_contents(),i.getMail_date().toString()
 					));
+			System.out.println(receiveMails);
 			
 		}
 		
