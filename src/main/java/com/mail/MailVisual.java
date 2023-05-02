@@ -13,7 +13,7 @@ public interface MailVisual {
 		    "\u001B[35m" ,				// purple ANSI CODE
 		    "\u001B[36m" ,				// cyan ANSI CODE
 		    "\u001B[37m" ,				// white ANSI CODE
-			
+		    "\u001B[0m"					// exit ANSI CODE
 	};
 	
 
