@@ -237,6 +237,10 @@ public class ServiceImpl implements Service{
 	}
 	@Override
 	public UserDTO findUserByUserNo(int user_no) {
+		if (user_no == 0) {
+			UserDTO dto = new UserDTO(user_no, "탈퇴한 회원", "-1", "탈퇴한 회원");
+			return dto;
+		}
 		SqlSession session = sqlSessionFactory.openSession();
 		UserDTO list = null;
 		try {

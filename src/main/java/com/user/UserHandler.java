@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.dto.MailBoxDTO;
+import com.dto.MailDTO;
 import com.dto.UserDTO;
 import com.exception.RecordNotFoundException;
+import com.mail.Mail;
 import com.service.Service;
 import com.service.ServiceImpl;
 
@@ -141,6 +143,79 @@ public class UserHandler {
 		else {
 			System.out.println("회원탈퇴 취소합니다.");
 		}
+	}
+	
+	public void mailBoxDeco() {
+		int textColor;
+		int shape;
+		int i=0;
+		System.out.println("색상선택");
+		for (String c : MailBox.textColor) {
+			System.out.println(i+" \t "+c);
+			i++;
+		}
+		do {
+			int colorCh = scan.nextInt();
+			if (colorCh<MailBox.textColor.length) {				
+				textColor = colorCh;
+				break;
+			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
+		int j=0;
+		System.out.println("모양선택");
+		for (String s : MailBox.shape) {
+			System.out.println(j+" \t "+s);
+		}
+		do {
+			int shapeCh = scan.nextInt();
+			if (shapeCh<MailBox.shape.length) {				
+				shape = shapeCh;
+				break;
+			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
+		System.out.println("메일박스 수정 원할 시 0번 입력 // 뒤로 돌아가기 1번 입력");
+		int ch = scan.nextInt();
+		if (ch==0) {
+			user.upDateBox(textColor, shape);			
+		} 
+	}
+	
+	public int selectMailChoice() {
+		Service service = new ServiceImpl();
+		List<MailDTO> list = service.findMail(user.getUser_no());
+		for(MailDTO l : list) {
+			System.out.println(l.getMail_no()+" \t "+l.getMail_title()+" \t "+l.getMail_contents());
+		}
+		System.out.println("확인할 메일번호 입력");
+		do {
+			int mail_no = scan.nextInt();
+			for(MailDTO l : list) {
+				if(mail_no==l.getMail_no()) {
+					return mail_no;
+				}
+			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
+	}
+	
+	public int deleteMailChoice() {
+		Service service = new ServiceImpl();
+		List<MailDTO> list = service.findMail(user.getUser_no());
+		for(MailDTO l : list) {
+			System.out.println(l.getMail_no()+" \t "+l.getMail_title()+" \t "+l.getMail_contents());
+		}
+		System.out.println("삭제할 메일번호 입력");
+		do {
+			int mail_no = scan.nextInt();
+			for(MailDTO l : list) {
+				if(mail_no==l.getMail_no()) {
+					return mail_no;
+				}
+			}
+			System.out.println("번호를 다시 확인해 주세요");
+		} while(true);
 	}
 	
 }

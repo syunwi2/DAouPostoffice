@@ -37,7 +37,8 @@ public void sendMail(String user_id) {
 	System.out.println();
 
 	//배너 예시 어떻게 보여주징,,,?
-	System.out.println("배너를 선택하세요 1: 풍선 2:선물 3: 축제 4: 꽃");
+	System.out.println("배너를 선택하세요");
+	System.out.println("1: 풍선 2:선물 3: 축제 4: 꽃");
 	int bannerindex = scan.nextInt();
 	scan.nextLine();
 	System.out.println("---------------------------------------------------------------");
