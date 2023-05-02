@@ -122,7 +122,7 @@ public interface MailVisual {
 			
 	};
 	
-	public void view();
+	public void view(int mail_no);
 	
 	
 	
