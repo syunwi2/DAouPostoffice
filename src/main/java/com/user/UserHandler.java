@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 public class UserHandler {
 	
 	User user = new User();
-	UserDTO dto = new UserDTO();
 	Scanner scan = new Scanner(System.in);
 	
 	//sign up
@@ -96,6 +95,8 @@ public class UserHandler {
 	} //login in
 	
 	public void login() {
+		UserDTO dto = new UserDTO();
+		
 		System.out.println(" login");
 		System.out.println(" ======================== ");
 		
@@ -136,14 +137,15 @@ public class UserHandler {
 	public void logout() {
 		// 로그인이 되지 않으면 로그아웃 선택지는 없음
 		// 로그아웃을 하면 메인페이지 이동
-		User user = null;
-		UserDTO dto = null;
+		user = null;
+
 		System.out.println("로그아웃");
 		
 	}
 
 	//회원탈퇴
 	public void withdrawal() {
+		System.out.println(user);
 		System.out.println("회원탈퇴 시작");
 		System.out.println("정말 탈퇴하시겠습니까? 탈퇴하시려면 1번을 눌러주세요. ");
 		System.out.println("다른키를 누르면 메인화면으로 돌아갑니다. ");
