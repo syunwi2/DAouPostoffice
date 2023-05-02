@@ -89,12 +89,12 @@ public class Mail  implements MailVisual {
 			visual_dto.setText_color(this.textColorindex);
 			visual_dto.setBackground_color(this.backgroundColorindex);
 			visual_dto.setBanner(this.bannerindex);
-			visual_dto.setMail_mail_no(-1);//얘도 자동입력이징...?
 			
 			
 			int n = 0;
 			try{
 				n = serviceimpl.insertMail(mail_dto);
+				visual_dto.setMail_mail_no(mail_dto.getMail_no());
 				n = serviceimpl.insertMailVisual(visual_dto);
 			}catch(Exception e) {
 				e.getMessage();
