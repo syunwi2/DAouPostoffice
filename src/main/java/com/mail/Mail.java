@@ -62,8 +62,10 @@ public class Mail  implements MailVisual {
 		ServiceImpl serviceimpl = new ServiceImpl();
 		MailDTO mail_dto = serviceimpl.findMailByMailNo(mail_no);//함수 변경
 		MailVisualDTO visual_dto = serviceimpl.findMailVisual(mail_no);
+		String sender_name = serviceimpl.findUserByUserNo(serviceimpl.findMailByMailNo(mail_no).getReceive_user_no()).getUser_name();
 		
-		System.out.println("보낸 사람: ");//view박스로 함수 바꾸기
+	
+		System.out.println("보낸 사람: "+ (mail_dto.getMail__anonymity() == 0? "익명의 작성자": sender_name));//view박스로 함수 바꾸기
 		String exit = "\u001B[0m";
 		System.out.printf(BANNER[visual_dto.getBanner()]);
 		System.out.println(BACKGROUDCOLOR[visual_dto.getBackground_color()]+TEXTCOLOR[visual_dto.getText_color()]+mail_dto.getMail_contents()+exit);}
@@ -89,7 +91,6 @@ public class Mail  implements MailVisual {
 			visual_dto.setText_color(this.textColorindex);
 			visual_dto.setBackground_color(this.backgroundColorindex);
 			visual_dto.setBanner(this.bannerindex);
-			
 			
 			int n = 0;
 			try{
@@ -126,7 +127,7 @@ public class Mail  implements MailVisual {
     }
 		
 		 
-	}
+}
 
 	
 	

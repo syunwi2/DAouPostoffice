@@ -108,8 +108,9 @@ public class Main {
 				break;
 			case 2:
 				// 조회한 메일 내용 보기
-				user.selectMailChoice();
-				
+				Mail mail_view = new Mail();
+				int n = user.selectMailChoice();
+				mail_view.view(n);
 				break;
 			case 3:
 				// 받은 메일 삭제하기
