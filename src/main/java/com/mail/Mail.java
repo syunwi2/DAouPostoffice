@@ -16,7 +16,7 @@ import com.exception.OutofDateException;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Mail  implements MailVisual {
+public class Mail implements MailVisual {
 	int mail_no;
 	int textColorindex;
 	int backgroundColorindex;

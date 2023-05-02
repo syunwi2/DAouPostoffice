@@ -43,6 +43,8 @@ public class User implements MailBox {
 	
 	
 	public void viewBox() {
+		receiveMails.clear();
+		
 		List<MailDTO> m = new ArrayList<MailDTO>();
 
 		Service service = new ServiceImpl();
@@ -55,7 +57,6 @@ public class User implements MailBox {
 			UserDTO m3 = service.findUserByUserNo(i.getSend_user_no());
 			UserDTO m4 = service.findUserByUserNo(i.getReceive_user_no());
 			
-			receiveMails.clear();
 			receiveMails.put(i.getMail_no(), new Mail(i.getMail_no(),m2.getText_color(),
 					m2.getBackground_color(),m2.getBanner(),
 					i.getMail__anonymity(), m3.getUser_name(),m4.getUser_name(),

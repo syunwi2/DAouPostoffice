@@ -192,7 +192,7 @@ public class UserHandler {
 	
 	public Mail selectMailChoice() {
 		Hashtable<Integer, Mail> ht = user.getReceiveMails();
-		
+
 		for (Integer key: ht.keySet()) {
             System.out.println(key+" \t "+ht.get(key).getTitle());
         }

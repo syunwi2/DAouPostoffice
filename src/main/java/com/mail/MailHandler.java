@@ -16,11 +16,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MailHandler {
 	
-private Mail mail;
-
-public void sendMail(String user_id) {	
-	Mail mail = new Mail();
-	Scanner scan = new Scanner(System.in);
+	public Mail mail = new Mail();
+	public Scanner scan = new Scanner(System.in);
 	
 	public void sendMail(String user_id) {	
 		
@@ -108,8 +105,8 @@ public void sendMail(String user_id) {
 	    String mailtime = null;
 	    do {
 	    	mailtime = scan.nextLine();
+	    	System.out.println(mailtime);
 	    } while (mail.checkDateFormat(mailtime));
-	    
 	    
 	    //mail 멤버변수 설정
 	    mail.setBackgroundColorindex(backgroundcolor);
