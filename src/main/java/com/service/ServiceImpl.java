@@ -236,6 +236,18 @@ public class ServiceImpl implements Service{
 		return list;
 	}
 	@Override
+	public UserDTO findUserByUserNo(int user_no) {
+		SqlSession session = sqlSessionFactory.openSession();
+		UserDTO list = null;
+		try {
+			DAO dao = new DAO();
+			list = dao.findUserByUserNo(session, user_no);
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+	@Override
 	public MailBoxDTO findMailBox(int user_user_no) {
 		SqlSession session = sqlSessionFactory.openSession();
 		MailBoxDTO list = null;
@@ -260,6 +272,18 @@ public class ServiceImpl implements Service{
 		return list;
 	}
 	@Override
+	public MailDTO findMailByMailNo(int mail_no) {
+		SqlSession session = sqlSessionFactory.openSession();
+		MailDTO list = null;
+		try {
+			DAO dao = new DAO();
+			list = dao.findMailByMailNo(session, mail_no);
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+	@Override
 	public MailVisualDTO findMailVisual(int mail_mail_no) {
 		SqlSession session = sqlSessionFactory.openSession();
 		MailVisualDTO list = null;
@@ -271,6 +295,5 @@ public class ServiceImpl implements Service{
 		}
 		return list;
 	}
-	
 	
 }

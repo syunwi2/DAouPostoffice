@@ -9,46 +9,14 @@ import com.service.ServiceImpl;
 
 public class MailHandler {
 	
-public void sendMail(UserDTO dto) {	
+public void sendMail(String user_id) {	
 	
 	Mail mail = new Mail();
 	Scanner scan = new Scanner(System.in);
 	
-//	mail.view();
-	
-	/*
-	 *
-	 */
+	//mail.view();
 	
 	//입력받는 부분 : textcolor, backgroundcolor, reciever, title
-	System.out.println("글자색을 입력하세요");
-	System.out.println("(0: black, 1: red, 2: green, 3: yellow, 4: blue, 5: purple, 6: cyan, 7: white");
-	int textcolor = scan.nextInt();
-	scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
-	System.out.println();
-	
-	
-	System.out.println("글자의 배경색을 입력하세요");
-	System.out.println("(0: black, 1: red, 2: green, 3: yellow, 4: blue, 5: purple, 6: cyan, 7: white");
-	int backgroundcolor = scan.nextInt();
-	scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
-	System.out.println();
-
-	//배너 예시 어떻게 보여주징,,,?
-	System.out.println("배너를 선택하세요");
-	int bannerindex = scan.nextInt();
-	scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
-	System.out.println();
-	
-	System.out.println("수신자 아이디를 입력하세요");
-	String receiver = scan.nextLine();
-	System.out.println("---------------------------------------------------------------");
-	System.out.println();
-	
-	
 	System.out.println("편지의 제목을 입력하세요 (100자 이내)");
 	String mailtitle = scan.nextLine();
 	System.out.println("---------------------------------------------------------------");
@@ -94,28 +62,24 @@ public void sendMail(UserDTO dto) {
 	    } while (!anoy.equals("0") && !anoy.equals("1"));
 
 	    System.out.println("상대방이 편지를 읽을 수 있는 시간을 설정해주세요 (yyyymmdd)");
-	    String mailtime = null;
+	    String mailtime = "";
 	    do {
-	    	{
-	            mailtime = scan.nextLine();
-	        }
+	    	mailtime = scan.nextLine();
 	    } while (mail.checkDateFormat(mailtime));
 	    
 	    
 	    //mail 멤버변수 설정
-	    mail.setBackgroundColorindex(backgroundcolor);
-	    mail.setBannerindex(bannerindex);
+	    mail.setBackgroundColorindex(count);
+	    mail.setBannerindex(count);
 	    mail.setContent(text);
 	    mail.setMail_anonymity(Integer.parseInt(anoy));//anoy를 그냥 숫자로 받는건 안되낭?
 	    mail.setOpenDate(mailtime);
-	    mail.setReceiver(receiver);//작성 필요
-	    mail.setSender(user.getUser_id());//UserDTO 받아와야하나?
-	    mail.setTextColorindex(textcolor);
-	    mail.setTitle(mailtitle);
+	    mail.setReceiver("master");//작성 필요
+	    mail.setSender(user_id);
+	    mail.setTextColorindex(count);
+	    mail.setTitle("title");
 	    
 	    mail.send();
-	    
-	    
 	}
 	
 

@@ -29,7 +29,9 @@ public interface Service {
 	public UserDTO isIDused(String user_id);
 	public UserDTO findUser(UserDTO dto);
 	public List<UserDTO> findUserAll(String user_name);
+	public UserDTO findUserByUserNo(int user_no);
 	public MailBoxDTO findMailBox(int user_user_no);
 	public List<MailDTO> findMail(int receive_user_no);
+	public MailDTO findMailByMailNo(int mail_no);
 	public MailVisualDTO findMailVisual(int mail_mail_no);
 }
