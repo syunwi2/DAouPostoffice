@@ -1,7 +1,9 @@
 package com.user;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.dto.MailBoxDTO;
@@ -188,37 +190,33 @@ public class UserHandler {
 		} 
 	}
 	
-	public int selectMailChoice() {
-		Service service = new ServiceImpl();
-		List<MailDTO> list = service.findMail(user.getUser_no());
-		for(MailDTO l : list) {
-			System.out.println(l.getMail_no()+" \t "+l.getMail_title());
-		}
-		System.out.println("확인할 메일번호 입력");
+	public Mail selectMailChoice() {
+		Hashtable<Integer, Mail> ht = user.getReceiveMails();
+
+		for (Integer key: ht.keySet()) {
+            System.out.println(key+" \t "+ht.get(key).getTitle());
+        }
 		do {
+			System.out.println("확인할 메일번호 입력");
 			int mail_no = scan.nextInt();
-			for(MailDTO l : list) {
-				if(mail_no==l.getMail_no()) {
-					return mail_no;
-				}
+			if(ht.containsKey(mail_no)) {
+				return ht.get(mail_no);
 			}
 			System.out.println("번호를 다시 확인해 주세요");
 		} while(true);
 	}
 	
-	public int deleteMailChoice() {
-		Service service = new ServiceImpl();
-		List<MailDTO> list = service.findMail(user.getUser_no());
-		for(MailDTO l : list) {
-			System.out.println(l.getMail_no()+" \t "+l.getMail_title()+" \t ");
-		}
-		System.out.println("삭제할 메일번호 입력");
+	public Mail deleteMailChoice() {
+		Hashtable<Integer, Mail> ht = user.getReceiveMails();
+		
+		for (Integer key: ht.keySet()) {
+            System.out.println(key+" \t "+ht.get(key).getTitle());
+        }
 		do {
+			System.out.println("삭제할 메일번호 입력");
 			int mail_no = scan.nextInt();
-			for(MailDTO l : list) {
-				if(mail_no==l.getMail_no()) {
-					return mail_no;
-				}
+			if(ht.containsKey(mail_no)) {
+				return ht.get(mail_no);
 			}
 			System.out.println("번호를 다시 확인해 주세요");
 		} while(true);

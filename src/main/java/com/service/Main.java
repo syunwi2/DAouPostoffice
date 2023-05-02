@@ -109,13 +109,11 @@ public class Main {
 				break;
 			case 2:
 				// 조회한 메일 내용 보기
-				int n = user.selectMailChoice();
-				mail.getMail().view(n);
+				mail.viewMail(user.selectMailChoice());
 				break;
 			case 3:
 				// 받은 메일 삭제하기
-				int mail_no = user.deleteMailChoice();
-				mail.deleteMail(mail_no);
+				mail.deleteMail(user.deleteMailChoice());
 				break;
 			case 4:
 				ch = -1;

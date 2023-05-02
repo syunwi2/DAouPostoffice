@@ -15,8 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MailHandler {
-	Mail mail = new Mail();
-	Scanner scan = new Scanner(System.in);
+	
+	public Mail mail = new Mail();
+	public Scanner scan = new Scanner(System.in);
 	
 	public void sendMail(String user_id) {	
 		
@@ -104,8 +105,8 @@ public class MailHandler {
 	    String mailtime = null;
 	    do {
 	    	mailtime = scan.nextLine();
+	    	System.out.println(mailtime);
 	    } while (mail.checkDateFormat(mailtime));
-	    
 	    
 	    //mail 멤버변수 설정
 	    mail.setBackgroundColorindex(backgroundcolor);
@@ -123,11 +124,11 @@ public class MailHandler {
 	    
 	}
 	
-
-	public void deleteMail(int mail_no) {	
+	public void deleteMail(Mail mail) {
+		int mail_no = mail.getMail_no();
 		ServiceImpl serviceimpl = new ServiceImpl();
-	    MailDTO mail = serviceimpl.findMailByMailNo(mail_no);
-	    if (mail == null) {
+	    MailDTO dto = serviceimpl.findMailByMailNo(mail_no);
+	    if (dto == null) {
 	        System.out.println(" 메일이 존재하지 않습니다.");
 	        return;
 	    }
@@ -143,4 +144,10 @@ public class MailHandler {
 				
 	}
 	
+	public void viewMail(Mail mail) {
+		this.mail = mail;
+		mail.view();
+	}
+	
 }
+
