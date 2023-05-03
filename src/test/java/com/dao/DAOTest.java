@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -111,74 +113,152 @@ class DAOTest {
 		DAO dao = new DAO();
 		
 		// delete user
+		assertEquals(1, dao.deleteUser(session, 9));
 		
 		// delete user not exists.
+		assertEquals(0, dao.deleteUser(session, -1));
+		
+		session.close();
 	}
 
 	@Test
 	void testDeleteMailBox() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		
+		// delete MailBox
+		assertEquals(1, dao.deleteMailBox(session, 9));
+		
+		// delete MailBox not exists.
+		assertEquals(0, dao.deleteMailBox(session, -1));
+		
+		session.close();
 	}
 
 	@Test
 	void testDeleteMail() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		
+		// delete Mail
+		assertEquals(1, dao.deleteMail(session, 3));
+		
+		// delete Mail not exists.
+		assertEquals(0, dao.deleteMail(session, -1));
+		
+		session.close();
 	}
 
 	@Test
 	void testDeleteMailVisual() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		
+		// delete MailVisual
+		assertEquals(1, dao.deleteMail(session, 3));
+		
+		// delete MailVisual not exists.
+		assertEquals(0, dao.deleteMail(session, -1));
+		
+		session.close();
 	}
 
 	@Test
 	void testIsIDused() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		UserDTO dto = new UserDTO();
+		
+		// select id used
+		assertInstanceOf(dto.getClass(), dao.isIDused(session, "master"));
+		
+		// select id not used
+		assertNull(dao.isIDused(session, "myTestCase"));
+		
+		session.close();
 	}
 
 	@Test
 	void testFindUser() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		UserDTO dto = new UserDTO();
+		
+		// select user with right data
+		assertInstanceOf(dto.getClass(), dao.findUser(session, new UserDTO(-1, "master", "0000", "master")));
+		
+		// select user with wrong data
+		assertNull(dao.findUser(session, new UserDTO(-1, "master", "1111", "master")));
+		
+		session.close();
 	}
 
 	@Test
 	void testFindUserAll() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		List<UserDTO> list = new ArrayList<>();
+		
+		// select user with id used
+		assertInstanceOf(list.getClass(), dao.findUserAll(session, "master"));
+		
+		session.close();	
 	}
 
 	@Test
 	void testFindUserByUserNo() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		UserDTO dto = new UserDTO();
+		
+		// select user with right data
+		assertInstanceOf(dto.getClass(), dao.findUserByUserNo(session, 9));
+		
+		session.close();
 	}
 
 	@Test
 	void testFindMailBox() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		MailBoxDTO dto = new MailBoxDTO();
+		
+		assertInstanceOf(dto.getClass(), dao.findMailBox(session, 9));
+		
+		session.close();
 	}
 
 	@Test
 	void testFindMail() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		List<MailDTO> list = new ArrayList<>();
+		
+		assertInstanceOf(list.getClass(), dao.findMail(session, 9));
+		
+		session.close();
 	}
 
 	@Test
 	void testFindMailByMailNo() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		MailDTO dto = new MailDTO();
+		
+		assertInstanceOf(dto.getClass(), dao.findMailByMailNo(session, 3));
+		
+		session.close();
 	}
 
 	@Test
 	void testFindMailVisual() {
 		SqlSession session = sqlSessionFactory.openSession();
 		DAO dao = new DAO();
+		MailVisualDTO dto = new MailVisualDTO();
+		
+		assertInstanceOf(dto.getClass(), dao.findMailVisual(session, 3));
+		
+		session.close();
 	}
 
 }
