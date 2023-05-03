@@ -30,7 +30,6 @@
 		<version>1.18.26</version>
 		<scope>provided</scope>
 	</dependency>
-	
   </dependencies>
   
   <build>
@@ -50,6 +49,73 @@
 	    <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
 	    <version>2.22.0</version>
 	  </plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>3.1.0</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+						<mainClass>com.service.Main</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
+		<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        <overWriteIfNewer>true</overWriteIfNewer>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>  
+	    	<groupId>org.apache.maven.plugins</groupId>  
+		    <artifactId>maven-assembly-plugin</artifactId>  
+		    <version>2.2.1</version>  
+		    <configuration>  
+		      <descriptorRefs>  
+		        <descriptorRef>jar-with-dependencies</descriptorRef>  
+		      </descriptorRefs>  
+		      <archive>
+		          <manifest>
+		              <mainClass> com.service.Main </mainClass>
+		          </manifest>
+		      </archive>
+	    </configuration>  
+	  </plugin>
+	 <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+                <encoding>UTF-8</encoding>
+            </configuration>
+        </plugin>
     </plugins>
+    
+     <resources>
+         <resource>
+             <directory>src/main/java</directory>
+             <includes>
+                 <include>**/*.xml</include>
+             </includes>
+         </resource>
+         <resource>
+             <directory>src/main/java</directory>
+             <includes>
+                 <include>**/*.properties</include>
+             </includes>
+         </resource>
+     </resources>
  </build>
 </project>

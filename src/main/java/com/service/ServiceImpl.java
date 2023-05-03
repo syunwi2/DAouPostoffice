@@ -14,9 +14,9 @@ import com.dto.*;
 import com.exception.*;
 
 public class ServiceImpl implements Service{
-
-	static SqlSessionFactory sqlSessionFactory;
-    static {
+	SqlSessionFactory sqlSessionFactory;
+	
+	public ServiceImpl() {
     	String resource = "com/mybatis/Configuration.xml";
     	InputStream inputStream=null;
 		try {
@@ -25,7 +25,7 @@ public class ServiceImpl implements Service{
 			e.printStackTrace();
 		}
     	sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-    }//end static block
+	}
 
     // ========== INSERT =========
 	@Override
