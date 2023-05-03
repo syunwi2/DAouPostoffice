@@ -37,10 +37,10 @@ public class Mail implements MailVisual {
 	        // Date로 변경하기 위해 날짜 형식 yyyy-mm-dd로 변경
 	        SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-MM-dd");
 	        
-	        java.util.Date tempDate = null;
+	        java.util.Date tempDate = null; // 현재 날짜 형식(yyyymmdd)으로 java.util.Date객체를 생성
 	        
 	        try {
-	            // 현재 날짜 형식(yyyymmdd)으로 java.util.Date객체를 생성
+	           
 	            tempDate = beforeFormat.parse(date);
 	        } catch (ParseException e) {
 	            e.printStackTrace();
@@ -49,7 +49,7 @@ public class Mail implements MailVisual {
 	        // java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환한다.
 	        String transDate = afterFormat.format(tempDate);
 	        
-	        // 반환된 String 값을 Date로 변경한다.
+	        // 반환된 String 값을 java.sql.Date로 변경한다.
 	        Date d = Date.valueOf(transDate);
 	        
 	        return d;
