@@ -85,7 +85,6 @@ public class Main {
 			}
 			switch (ch) {
 			case 1:
-				// 우체통 꾸미기(UserHandler: 요한, 프런트: 건희), 조회한 메일 내용 보기(나연), 받은 메일 삭제하기(표준 입출력 받고 함수에 연결: 요한, 건희)
 				checkMailBox(user);
 				break;
 			case 2:
@@ -110,7 +109,6 @@ public class Main {
 	} // afterLogin
 	
 	public static void checkMailBox(UserHandler user) {
-		// 서버에서 메일 받아오기: 연준, 메일 리스트 뜨도록 수정 후 표준 입출력으로 읽을 메일 선택받기: 요한
 		Scanner scan = new Scanner(System.in);
 		MailHandler mail = new MailHandler();
 		int ch=0;
@@ -129,15 +127,12 @@ public class Main {
 			}
 			switch (ch) {
 			case 1:
-				// 우체통 꾸미기
 				user.mailBoxDeco();
 				break;
 			case 2:
-				// 조회한 메일 내용 보기
 				mail.viewMail(user.selectMailChoice());
 				break;
 			case 3:
-				// 받은 메일 삭제하기
 				mail.deleteMail(user.deleteMailChoice());
 				break;
 			case 4:

@@ -26,15 +26,6 @@ public class ServiceImpl implements Service{
 		}
     	sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
     }//end static block
-    
-    /*
-	   SqlSession session = sqlSessionFactory.openSession();
-		try {
-			
-		}finally {
-			session.close();
-		}
-	*/
 
     // ========== INSERT =========
 	@Override
