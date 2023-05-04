@@ -17,13 +17,6 @@ public class MailHandler {
 	
 	
 public void sendMail(String user_id) {	
-
-	
-	//mail.view();
-	
-	/*
-	 *
-	 */
 	int textcolor = 0;
 	int backgroundcolor = 0;
 	int bannerindex = 0;
@@ -52,7 +45,6 @@ public void sendMail(String user_id) {
 	System.out.println("˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖ -메일 작성중- ˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖˖◛⁺˖\n");
 	System.out.println();
 
-	//배너 예시 어떻게 보여주징,,,?
 	do {
 	System.out.println("✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉✉");
 	System.out.println("✉ 배너를 선택하세요                                                                ✉");
@@ -133,10 +125,10 @@ public void sendMail(String user_id) {
 	    mail.setBackgroundColorindex(backgroundcolor);
 	    mail.setBannerindex(bannerindex);
 	    mail.setContent(text);
-	    mail.setMail_anonymity(Integer.parseInt(anoy));//anoy를 그냥 숫자로 받는건 안되낭?
+	    mail.setMail_anonymity(Integer.parseInt(anoy));
 	    mail.setOpenDate(mailtime);
-	    mail.setReceiver(receiver);//작성 필요
-	    mail.setSender(user_id);//UserDTO 받아와야하나?
+	    mail.setReceiver(receiver);
+	    mail.setSender(user_id);
 	    mail.setTextColorindex(textcolor);
 	    mail.setTitle(mailtitle);
 	    

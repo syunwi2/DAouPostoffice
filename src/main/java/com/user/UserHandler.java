@@ -145,7 +145,6 @@ public class UserHandler {
 
 	//회원탈퇴
 	public void withdrawal() {
-		System.out.println(user);
 		System.out.println("회원탈퇴 시작");
 		System.out.println("정말 탈퇴하시겠습니까? 탈퇴하시려면 1번을 눌러주세요. ");
 		System.out.println("다른키를 누르면 메인화면으로 돌아갑니다. ");
@@ -156,15 +155,10 @@ public class UserHandler {
 			try {
 				//유저테이블 행 삭제
 				int n = service.deleteUser(user.getUser_no());
-				//메일박스 행 삭제
-				//int m = service.deleteMailBox(user.getUser_no());
-				//메일 삭제
-				
 			} catch (RecordNotFoundException e) {
 				System.out.println(e.getMessage());
 			}
 			System.out.println("회원탈퇴에 성공하였습니다.");
-			//자동 로그아웃 및 메인페이지이동 ->  logout?
 		}
 		else {
 			System.out.println("회원탈퇴 취소합니다.");

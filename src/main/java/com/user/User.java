@@ -25,7 +25,7 @@ import java.util.List;
 public class User implements MailBox {
 	public static final String exit     = "\u001B[0m";
 	int user_no;
-	String id; // 더미값
+	String id;
 	String passwd;
 	String name;
 	int textColorindex;
@@ -36,8 +36,8 @@ public class User implements MailBox {
 		MailBoxDTO box = new MailBoxDTO();
 		Service service = new ServiceImpl();
 		box = service.findMailBox(this.user_no);
-		this.setTextColorindex(box.getMailbox_color()); // 더미값 대입
-		this.setShapeIndex(box.getMailbox_shape()); // 더미값 대입
+		this.setTextColorindex(box.getMailbox_color());
+		this.setShapeIndex(box.getMailbox_shape());
 		
 	}
 	

@@ -21,15 +21,14 @@ public class Mail implements MailVisual {
 	int textColorindex;
 	int backgroundColorindex;
 	int bannerindex;
-	int mail_anonymity;//_하나 빼야하지 않
+	int mail_anonymity;
 	String sender;
 	String receiver;
 	String title;
 	String content;
-	String openDate;//Date로 변경
+	String openDate;
 	
 	//String 형태로 받은 날짜 정보를 db에 넣기 위해 date 타입으로 변환하는 함수
-	 
  	private Date transformDate(String date)
 	    {
 	        SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyyMMdd");
@@ -55,10 +54,8 @@ public class Mail implements MailVisual {
 	        return d;
 	    }
 	
- 	//파라미터 변경 -> mail_no 자리에 요한님이 받아준 거 넣을 예정
-	public void view() {//파라미터로 db에 저장된 거 가져오기
-		
-		System.out.println("보낸 사람: "+ (mail_anonymity == 0? "익명의 작성자": sender));//view박스로 함수 바꾸기
+	public void view() {
+		System.out.println("보낸 사람: "+ (mail_anonymity == 0? "익명의 작성자": sender));
 		String exit = "\u001B[0m";
 		System.out.printf(BANNER[bannerindex]);
 		System.out.println(BACKGROUDCOLOR[backgroundColorindex]+TEXTCOLOR[textColorindex]+content+exit);
@@ -69,8 +66,6 @@ public class Mail implements MailVisual {
 			MailDTO mail_dto = new MailDTO();
 			MailVisualDTO visual_dto = new MailVisualDTO();
 			ServiceImpl serviceimpl = new ServiceImpl();
-			//receiver_no랑 sender_no는 user 클래스 구현하는 거 보고 바뀔 수 있당!
-			//userdto에서 가져오는걸로 바꾸기
 			int receiver_no = serviceimpl.isIDused(this.receiver).getUser_no();
 			int sender_no = serviceimpl.isIDused(this.sender).getUser_no();
 			Date date = this.transformDate(this.openDate);
