@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.MailMapper">
+ 
+   <!--  조회  -->
+   <select id="findMail" parameterType="int" resultType="com.dto.MailDTO">
+     select *
+     from mail
+     where receive_user_no=#{receive_user_no}
+   </select>
+   <select id="findMailByMailNo" parameterType="int" resultType="com.dto.MailDTO">
+     select *
+     from mail
+     where mail_no=#{mail_no}
+   </select>
+   
+   <!-- 저장  -->
+   <insert id="insertMail" parameterType="com.dto.MailDTO">
+   		<selectKey keyProperty="mail_no" order="BEFORE" resultType="int">
+			select mail_no.nextval from dual
+		</selectKey>
+     	insert into mail (mail_no, mail_title, mail_contents, mail__anonymity, mail_date, send_user_no, receive_user_no)
+     	values  (#{mail_no}, #{mail_title}, #{mail_contents}, #{mail__anonymity}, #{mail_date}, #{send_user_no}, #{receive_user_no})
+   </insert>
+   
+   <!-- 삭제  -->
+   <delete id="deleteMail" parameterType="int">
+     delete from mail
+     where mail_no=#{mail_no}
+   </delete>
+   
+</mapper>
